@@ -1,15 +1,5 @@
 <template>
-  <el-menu
-    :collapse="false"
-    :router="true"
-    :default-active="$route.fullPath"
-    class="nav-menu"
-    mode="vertical"
-    @select="handleSelect"
-    background-color="#202c3a"
-    text-color="#fff"
-    active-text-color="#ffd04b"
-  ></el-menu>
+  	<el-menu :collapse="false" :router="true" :default-active="$route.fullPath" class="nav-menu" mode="vertical" @select="handleSelect" background-color="#202c3a" text-color="#fff" active-text-color="#ffd04b"></el-menu>
 </template>
 <script>
 export default {
