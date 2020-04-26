@@ -66,7 +66,7 @@ const routes = [
         iconCls: "fa el-icon-s-data",
 		hidden: false,
 		meta: {
-			title: "框架简介",
+			title: "首页",
             keepAlive: false,
             level: 0
 		},
