@@ -4,6 +4,7 @@ const CompressionWebpackPlugin = require("compression-webpack-plugin");
 
 let env = process.env.NODE_ENV;
 module.exports = {
+	// 基本路径,打包时加上.
 	// 如果是hash模式
 	publicPath: env !== "development" ? "./" : "/",
 	
@@ -13,24 +14,34 @@ module.exports = {
 	// 静态资源目录 (js, css, img, fonts)
 	assetsDir: "assets",
 
-	//关键点在这  原来的 Compiler 换成了 runtimeCompiler
-	runtimeCompiler: true,
-
-	//设置打包之后是否打包.map文件
-	productionSourceMap: env !== "development" ? false : true,
-
 	// 输出文件目录
 	outputDir: "dist",
-	// 让样式找到源
+
+	// 生产环境是否生成 sourceMap 文件
+	productionSourceMap: env !== "development" ? false : true,
+
+	//是否使用包含运行时编译器的 Vue 构建版本
+	runtimeCompiler: true,
+
+	// css相关配置
 	css: {
-		sourceMap: true
+		// extract: true, // 是否使用css分离插件 ExtractTextPlugin
+		sourceMap: true  // 开启 CSS source maps
+
 	},
+
+	//修改webpack-dev-server配置（尤其是跨域代理）
 	devServer: {
-		port: 8083,
-		host: "0.0.0.0",
-		hot: true,
-		open: false,
-		disableHostCheck: true,
+		port: 8083, // 端口
+		host: "0.0.0.0", // 允许外部ip访问
+		hot: true, //热更新
+		open: true, // 自动打开浏览器
+		https: false, // 启用https
+		// disableHostCheck: true, //绕过主机检查
+		overlay: {
+			warnings: true,
+			errors: true
+		},// 错误、警告在页面弹出
 		proxy: {
 			"/api": {
 				target: "127.0.0.1", //对应跨域的接口
@@ -42,14 +53,14 @@ module.exports = {
 			}
 		}
 	},
-
+	// webpack配置项
 	chainWebpack: config => {
 		config.resolve.alias.set("@", path.resolve(__dirname, "./src"));
 	},
-
+	//=>设置一些webpack配置项，用这些配置项和默认的配置项合并
 	configureWebpack: config => {
 		if (env !== "development") {
-			// 配置打包 压缩js
+			// // 为开发环境修改配置... 配置打包 压缩js
 			config.plugins.push(
 				new CompressionWebpackPlugin({
 					algorithm: "gzip",
@@ -59,6 +70,18 @@ module.exports = {
 					minRatio: 0.8
 				})
 			);
+		}else{
+			// 为生产环境修改配置...
 		}
+		Object.assign(config, {
+			// 开发生产共同配置
+			resolve: {
+				alias: {
+					'@': path.resolve(__dirname, './src'),
+					'@c': path.resolve(__dirname, './src/components'),
+					'@v': path.resolve(__dirname, './src/views')
+				} // 别名配置
+			}
+		})
 	}
 };
