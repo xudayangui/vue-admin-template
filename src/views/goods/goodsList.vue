@@ -2,16 +2,16 @@
 	<section>
 		<section v-loading="loading" element-loading-text="拼命加载中……" class="bg-white">
 			<div class="table-filter-wrapper mar-l-10">
-				<ph-form @searchBtn="searchBtn" @resetSearchBtn="resetSearchBtn" @addHandle="addHandle" :searchForm="searchForm"></ph-form>
+				<element-form @searchBtn="searchBtn" @resetSearchBtn="resetSearchBtn" @addHandle="addHandle" :searchForm="searchForm"></element-form>
 			</div>
 			<div class="table-wrapper pad-t-5 bor-t-1">
-				<ph-table :tableData="tableData" @editHandle="editHandle" @singleDeleteHandle="singleDeleteHandle" @selectionChangeHandle="selectionChangeHandle"></ph-table>
+				<element-table :tableData="tableData" @editHandle="editHandle" @singleDeleteHandle="singleDeleteHandle" @selectionChangeHandle="selectionChangeHandle"></element-table>
 				<el-row class="mar-t-10">
 					<el-col :span="4">
 						<el-button @click="batchDeleteHandle()" :disabled="isBatchDeleteDisabled" size="small">批量删除</el-button>
 					</el-col>
 					<el-col :span="20">
-						<ph-pagination @sendPaginations="sendPaginationsHandle" :paginations="paginationParams" class="mar-r-20 text-right"></ph-pagination>
+						<element-pagination @sendPaginations="sendPaginationsHandle" :paginations="paginationParams" class="mar-r-20 text-right"></element-pagination>
 					</el-col>
 				</el-row>
 			</div>
@@ -30,10 +30,10 @@ import AddedEditorDialog from "./components/AddedEditorDialog";
 export default {
 	name: "goodsList",
 	components: {
-		"ph-pagination": Pagination,
+		"element-pagination": Pagination,
 		"added-editor-dialog": AddedEditorDialog,
-		"ph-form": Form,
-		"ph-table": Table
+		"element-form": Form,
+		"element-table": Table
 	},
 	data() {
 		return {
