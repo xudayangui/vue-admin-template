@@ -4,61 +4,17 @@ import Home from "../views/Home.vue";
 Vue.use(VueRouter);
 
 const routes = [
-    {
-        path: "*", //输错路由回首页
-        redirect: "/404",
-        hidden: true,
-        meta: {
-			title: "输错路由回首页",
-            keepAlive: false,
-            level: 0 //判断是否缓存 0为不缓存 1为缓存 2为详情页
-        }
-    },
-    {
-        path: "/", //默认路由
-        redirect: "/login",
-        hidden: true,
-        meta: {
-			title: "默认路由",
-            keepAlive: false,
-            level: 0
-        }
-    },
+    //输错路由回首页 
+    //keepAlive 判断是否缓存 0为不缓存 1为缓存 2为详情页
+    {path: "*", redirect: "/404",hidden: true, meta: {title: "输错路由回首页",keepAlive: false,level: 0 }},
+    //默认路由
+    {path: "/", redirect: "/login",hidden: true,meta: {title: "默认路由", keepAlive: false,level: 0}},
     //登录
-    {
-        path: "/login",
-        name: "login",
-        component: r => require.ensure([], () => r(require("../views/login/Login.vue")), "Login"),
-        hidden: true,
-        meta: {
-			title: "登录",
-            keepAlive: false,
-            level: 0
-        }
-    },
+    {path: "/login", name: "login", component: r => require.ensure([], () => r(require("../views/login/Login.vue")), "Login"),hidden: true,meta: {title: "登录",keepAlive: false,level: 0}},
     //404
-    {
-        path: "/404",
-        name: "notFound",
-        component: r => require.ensure([], () => r(require("../views/error/NotFound.vue")), "NotFound"),
-        hidden: true,
-        meta: {
-			title: "404",
-            keepAlive: false,
-            level: 0
-        }
-    },
-    {
-        path: "/home",
-        name: "home",
-        component: Home,
-        redirect: '/summarys/index',
-        hidden: true,
-        meta: {
-			title: "首页",
-            keepAlive: false,
-            level: 0
-        }
+    {path: "/404", name: "notFound",component: r => require.ensure([], () => r(require("../views/error/NotFound.vue")), "NotFound"),hidden: true, meta: {title: "404", keepAlive: false, level: 0 }},
+    {path: "/home",name: "home",component: Home,redirect: '/summarys/index',hidden: true,meta: {title: "首页", keepAlive: false, level: 0
+}
     },
     {
         path: "/home",
