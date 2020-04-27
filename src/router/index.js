@@ -120,55 +120,7 @@ const routes = [
 				}
 			}
         ]
-    },
-    {
-        path: "/home",
-        component: Home,
-        iconCls: "fa el-icon-s-data",
-		hidden: false,
-		meta: {
-			title: "上传导入",
-            keepAlive: false,
-            level: 0
-		},
-        children: [
-            {
-                path: "/upload/index",
-                component: () => import("../views/upload/index.vue"),
-                name: "upload",
-				hidden: false,
-                meta: {
-					title: "自定义上传导入",
-					keepAlive: false,
-					level: 0
-                }
-            }
-        ]
-    },
-    {
-        path: "/home",
-        component: Home,
-        iconCls: "fa el-icon-s-data",
-		hidden: false,
-		meta: {
-			title: "表单校验",
-            keepAlive: false,
-            level: 0
-		},
-        children: [
-            {
-                path: "/formValidation/index",
-                component: () => import("../views/formValidation/index.vue"),
-                name: "formValidation",
-				hidden: false,
-                meta: {
-					title: "校验动态下拉",
-					keepAlive: false,
-					level: 0
-                }
-            }
-        ]
-    },
+    }
 ]
 
 const router = new VueRouter({
