@@ -24,9 +24,12 @@
 					</template>
 				</el-menu>
 			</el-aside>
-			<el-main class="main-container">
+
+
+
+			<!-- 面包屑 -->
+			<!-- <el-main class="main-container">
 				<div class="pad-t-10 pad-b-30 pad-l-10">
-					<!-- 面包屑可抽成一个组件 -->
 					<el-breadcrumb separator-class="el-icon-arrow-right">
 						<el-breadcrumb-item to="/home">首页</el-breadcrumb-item>
 						<el-breadcrumb-item v-for="item in levelList" :key="item.path" class="el-breadcrumb__inner">
@@ -41,7 +44,7 @@
 				<transition name="slide-fade">
 					<router-view></router-view>
 				</transition>
-			</el-main>
+			</el-main> -->
 		</section>
 	</section>
 </template>

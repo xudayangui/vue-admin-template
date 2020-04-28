@@ -2,7 +2,7 @@ import 'babel-polyfill' //ie空白
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+// import store from './store'
 import Config from '../config/config' //后台返回状态码
 import * as filters from './filter/filters' //全局过滤器
 Object.keys(filters).forEach(key => {
@@ -21,11 +21,13 @@ Vue.use(ElementUI)
 Vue.prototype.$api = Api //在vue上挂载api
 Vue.prototype.$axios = Axios
 Vue.prototype.$config = Config //配置信息
+
 console.log('NODE_ENV:', process.env.NODE_ENV)
+// 对于开发版本，会默认向控制台打印 log
 Vue.config.productionTip = false
 
 new Vue({
     router,
-    store,
+    // store,
     render: h => h(App)
 }).$mount('#app')

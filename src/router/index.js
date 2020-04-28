@@ -5,27 +5,22 @@ Vue.use(VueRouter);
 
 const routes = [
     //输错路由回首页 
-    //keepAlive 判断是否缓存 0为不缓存 1为缓存 2为详情页
-    {path: "*", redirect: "/404",hidden: true, meta: {title: "输错路由回首页",keepAlive: false,level: 0 }},
+    {path: "*", redirect: "/404",hidden: true, meta: {title: "输错路由回首页"}},
     //默认路由
-    {path: "/", redirect: "/login",hidden: true,meta: {title: "默认路由", keepAlive: false,level: 0}},
+    {path: "/", redirect: "/login",hidden: true,meta: {title: "默认路由",}},
+    //home
+    {path: "/home",name: "home",component: Home,redirect: '/summarys/index',hidden: true,meta: {title: "首页", }},
     //登录
-    {path: "/login", name: "login", component: r => require.ensure([], () => r(require("../views/login/Login.vue")), "Login"),hidden: true,meta: {title: "登录",keepAlive: false,level: 0}},
+    {path: "/login", name: "login", component: r => require.ensure([], () => r(require("../views/login/Login.vue")), "Login"),hidden: true,meta: {title: "登录"}},
     //404
-    {path: "/404", name: "notFound",component: r => require.ensure([], () => r(require("../views/error/NotFound.vue")), "NotFound"),hidden: true, meta: {title: "404", keepAlive: false, level: 0 }},
-    {path: "/home",name: "home",component: Home,redirect: '/summarys/index',hidden: true,meta: {title: "首页", keepAlive: false, level: 0
-}
-    },
+    {path: "/404", name: "notFound",component: r => require.ensure([], () => r(require("../views/error/NotFound.vue")), "NotFound"),hidden: true, meta: {title: "404",  }},
+    
     {
         path: "/home",
         component: Home,
         iconCls: "fa el-icon-s-data",
 		hidden: false,
-		meta: {
-			title: "首页",
-            keepAlive: false,
-            level: 0
-		},
+		meta: {title: "首页",},
         children: [
             {
                 path: "/summarys/index",
@@ -34,7 +29,6 @@ const routes = [
 				hidden: false,
                 meta: {
 					title: "框架简介",
-					keepAlive: false,
 					level: 0
                 }
             }
@@ -45,23 +39,8 @@ const routes = [
         component: Home,
         iconCls: "fa el-icon-s-data",
 		hidden: false,
-		meta: {
-			title: "列表详情",
-            keepAlive: false,
-            level: 0
-		},
+		meta: {title: "列表详情",},
         children: [
-			{
-				path: "/goods/goodsList",
-				component: () => import("../views/goods/goodsList.vue"),
-				name: "goodsList",
-				hidden: false,
-				meta: {
-					title: "列表",
-					keepAlive: false,
-					level: 0
-				}
-			},
 			{
 				path: "/goods/goodsList/goodsDetail",
 				component: () => import("../views/goods/goodsDetail.vue"),
@@ -71,16 +50,22 @@ const routes = [
 					title: "详情",
 					parentPath: "/goods/goodsList",
 					parentTitle: "商品列表",
-					keepAlive: false,
 					level: 0
 				}
 			}
         ]
-    }
+    },
+    {
+        path: "/goods/goodsList",
+        component: () => import("../views/goods/goodsList.vue"),
+        name: "goodsList",
+        hidden: false,
+        meta: {title: "列表"}
+    },
 ]
 
 const router = new VueRouter({
-    // mode: "history",
+    // mode: "history",//HTML5 History 模式
     base: process.env.BASE_URL,
     routes
 });
