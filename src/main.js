@@ -1,33 +1,40 @@
-import 'babel-polyfill' //ie空白
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-// import store from './store'
-import Config from '../config/config' //后台返回状态码
-import * as filters from './filter/filters' //全局过滤器
-Object.keys(filters).forEach(key => {
-    Vue.filter(key, filters[key])
-})
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import './assets/css/base.css' //基础样式
-import './assets/less/nav.less' //导航样式
+import 'normalize.css/normalize.css' // 重置 css 样式
 
-import Api from './api/api' //导入api接口
-import Axios from './request/http' //导入axios请求
+import ElementUI from 'element-ui'  //引进element ui
+import 'element-ui/lib/theme-chalk/index.css' //引进element ui css
+
+import '@/styles/index.scss' // 全局 css
+
+import App from './App'  //挂载 vue
+import store from './store'  //引进vuex
+import router from './router' //引进路由
+
+import '@/icons' // 图标
+import '@/permission' // permission control
+
+/**
+ * 如果您不想使用模拟服务器
+ * 您想将MockJs用于模拟api
+ * 您可以执行：mockXHR（）
+ *
+ * 目前，MockJs将用于生产环境，
+ * 请在上网之前将其删除！ ！ ！
+ */
+if (process.env.NODE_ENV === 'production') {
+  const { mockXHR } = require('../mock')
+  mockXHR()
+}
+
 Vue.use(ElementUI)
 
-Vue.prototype.$api = Api //在vue上挂载api
-Vue.prototype.$axios = Axios
-Vue.prototype.$config = Config //配置信息
 
-console.log('NODE_ENV:', process.env.NODE_ENV)
-// 对于开发版本，会默认向控制台打印 log
 Vue.config.productionTip = false
 
 new Vue({
-    router,
-    // store,
-    render: h => h(App)
-}).$mount('#app')
+  el: '#app',
+  router,
+  store,
+  render: h => h(App)
+})

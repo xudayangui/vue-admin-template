@@ -1,30 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import getters from './getters'
+import app from './modules/app'
+import settings from './modules/settings'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-    state: {
-        token: ''//token
-    },
-    getters: {
-        token: state => state.token
-    },
-    mutations: {
-        //设置token
-        setToken (state, token) {
-            if (token) {
-                state.token = token
-            } else {
-                state.token = ''
-            }
-        }
-    },
-    actions: {
-        commitToken: ({ commit }, token) => {
-            commit('setToken', token)
-        }
-    },
-    modules: {
-    }
+const store = new Vuex.Store({
+	modules: {
+		app,
+		settings,
+		user
+	},
+	getters
 })
+
+export default store
