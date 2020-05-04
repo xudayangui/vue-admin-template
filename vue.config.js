@@ -29,19 +29,19 @@ module.exports = {
 			warnings: false,
 			errors: true
 		},
-		//配置 proxy 代理解决跨域问题
-		// proxy: {
-		// 	"/api": {
-		// 		target:"https://www.easy-mock.com/mock/5bc75b55dc36971c160cad1b/sheets", // 目标代理接口地址
-		// 		secure: false,
-		// 		changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
-		// 		// ws: true, // 是否启用websockets
-		// 		pathRewrite: {
-		// 			"^/api": "/"
-		// 		}
-		// 	}
-		// },
-		before: require('./mock/mock-server.js')
+		// 配置 proxy 代理解决跨域问题
+		proxy: {
+			"/api": {
+				target:"https://www.fastmock.site/mock/dc7443a19584b44d30f08d682225761c/api", // 目标代理接口地址
+				secure: false,
+				changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
+				// ws: true, // 是否启用websockets
+				pathRewrite: {
+					"^/api": "/"
+				}
+			}
+		},
+		// before: require('./mock/mock-server.js')
 	},
 	configureWebpack: {
 		name: name,
