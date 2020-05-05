@@ -3,7 +3,7 @@
 		<!-- <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" /> -->
 		<breadcrumb class="breadcrumb-container" />
 		<div class="right-menu">
-			<span style="display:block;cursor:pointer;font-size:15px; margin-right:25px;" @click.native="logout">
+			<span style="display:block;cursor:pointer;font-size:15px; margin-right:25px;" @click="logout">
 				<i class="el-icon-switch-button" style="margin-right:5px;"></i>退出
 			</span>
 		</div>
@@ -36,8 +36,16 @@ export default {
 		},
 		//退出
 		async logout() {
-			await this.$store.dispatch('user/logout')
-			this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+			this.$confirm('是否退出?', '提示', {
+				confirmButtonText: '确定',
+				cancelButtonText: '取消',
+				type: 'warning'
+			 }).then(async() => {
+				await this.$store.dispatch('user/logout')
+				this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+			}).catch(() => {
+
+			});
 		}
 	}
 }
