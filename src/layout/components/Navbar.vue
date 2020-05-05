@@ -1,6 +1,5 @@
 <template>
 	<div class="navbar">
-		<!-- <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" /> -->
 		<breadcrumb class="breadcrumb-container" />
 		<div class="right-menu">
 			<span style="display:block;cursor:pointer;font-size:15px; margin-right:25px;" @click="logout">
@@ -26,7 +25,6 @@ export default {
 	computed: {
 		...mapGetters([
 			'sidebar',
-			'avatar'
 		])
 	},
 	methods: {
