@@ -50,7 +50,7 @@ export const constantRoutes = [
 			path: 'dashboard',
 			name: 'Dashboard',
 			component: () => import('@/views/dashboard/index'),
-			meta: { title: '首页', icon: 'dashboard' }
+			meta: { title: '首页' }
 		}]
 	},
 
@@ -65,13 +65,13 @@ export const constantRoutes = [
 			path: 'table',
 			name: 'Table',
 			component: () => import('@/views/table/index'),
-			meta: { title: '表格', icon: 'table' }
+			meta: { title: '表格' }
 		},
 		{
 			path: 'tree',
 			name: 'Tree',
 			component: () => import('@/views/tree/index'),
-			meta: { title: '树形', icon: 'tree' }
+			meta: { title: '树形' }
 		}
 		]
 	},
@@ -84,7 +84,7 @@ export const constantRoutes = [
 			path: 'index',
 			name: 'Form',
 			component: () => import('@/views/form/index'),
-			meta: { title: '表单', icon: 'form' }
+			meta: { title: '表单'}
 		}
 		]
 	},
@@ -94,7 +94,7 @@ export const constantRoutes = [
 		component: Layout,
 		redirect: '/nested/menu1',
 		name: 'Nested',
-		meta: {title: '嵌套菜单',icon: 'nested'},
+		meta: {title: '嵌套菜单'},
 		children: [
 			{
 				path: 'menu1',

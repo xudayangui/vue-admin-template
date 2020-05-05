@@ -17,7 +17,7 @@
 				</span>
 				<el-input :key="passwordType" ref="password" v-model="loginForm.password" :type="passwordType" placeholder="Password" name="password" tabindex="2" auto-complete="on" @keyup.enter.native="handleLogin"/>
 				<span class="show-pwd" @click="showPwd">
-				<svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+					<svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
 				</span>
 			</el-form-item>
 			<el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>

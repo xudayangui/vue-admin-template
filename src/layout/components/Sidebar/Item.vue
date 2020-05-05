@@ -17,11 +17,14 @@ export default {
 		const vnodes = [];
 
 		if (icon) {
+			
 			vnodes.push(<svg-icon icon-class={icon} />);
+			console.error(vnodes)
 		}
 
 		if (title) {
 			vnodes.push(<span slot="title">{title}</span>);
+			console.error(vnodes)
 		}
 		return vnodes;
 	}

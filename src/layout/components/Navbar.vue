@@ -1,22 +1,11 @@
 <template>
 	<div class="navbar">
-		<hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+		<!-- <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" /> -->
 		<breadcrumb class="breadcrumb-container" />
 		<div class="right-menu">
-			<el-dropdown class="avatar-container" trigger="click">
-				<div class="avatar-wrapper">
-					<img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-					<i class="el-icon-caret-bottom" />
-				</div>
-				<el-dropdown-menu slot="dropdown" class="user-dropdown">
-					<router-link to="/">
-						<el-dropdown-item>首页</el-dropdown-item>
-					</router-link>
-					<el-dropdown-item divided @click.native="logout">
-						<span style="display:block;">退出</span>
-					</el-dropdown-item>
-				</el-dropdown-menu>
-			</el-dropdown>
+			<span style="display:block;cursor:pointer;font-size:15px; margin-right:25px;" @click.native="logout">
+				<i class="el-icon-switch-button" style="margin-right:5px;"></i>退出
+			</span>
 		</div>
 	</div>
 </template>
@@ -86,48 +75,6 @@ export default {
 
 		&:focus {
 			outline: none;
-		}
-
-		.right-menu-item {
-			display: inline-block;
-			padding: 0 8px;
-			height: 100%;
-			font-size: 18px;
-			color: #5a5e66;
-			vertical-align: text-bottom;
-
-			&.hover-effect {
-				cursor: pointer;
-				transition: background .3s;
-
-				&:hover {
-					background: rgba(0, 0, 0, .025)
-				}
-			}
-		}
-
-		.avatar-container {
-			margin-right: 30px;
-
-			.avatar-wrapper {
-				margin-top: 5px;
-				position: relative;
-
-				.user-avatar {
-					cursor: pointer;
-					width: 40px;
-					height: 40px;
-					border-radius: 10px;
-				}
-
-				.el-icon-caret-bottom {
-					cursor: pointer;
-					position: absolute;
-					right: -20px;
-					top: 25px;
-					font-size: 12px;
-				}
-			}
 		}
 	}
 }
