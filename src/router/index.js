@@ -98,7 +98,7 @@ export const constantRoutes = [
 		children: [
 			{
 				path: 'menu1',
-				component: () => import('@/views/nested/menu1/index'), // Parent router-view
+				component: () => import('@/views/nested/menu1/index'), // 父路由器视图  router-view
 				name: 'Menu1',
 				meta: { title: '一级嵌套' },
 				children: [
