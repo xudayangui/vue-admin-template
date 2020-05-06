@@ -11,7 +11,6 @@ import App from './App'  //挂载 vue
 import store from './store'  //引进vuex
 import router from './router' //引进路由
 
-import '@/icons' // 图标
 import '@/permission' // permission control
 
 Vue.use(ElementUI)
