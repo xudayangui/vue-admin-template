@@ -13,6 +13,12 @@ import router from './router' //引进路由
 
 import '@/permission' // permission control
 
+import ECharts from 'vue-echarts'
+
+import 'echarts/lib/chart/line'
+
+Vue.component('chart', ECharts)
+
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

@@ -10,11 +10,12 @@ const mutations = {
 	TOGGLE_SIDEBAR: state => {
 		state.sidebar.opened = !state.sidebar.opened
 		state.sidebar.withoutAnimation = false
-		if (state.sidebar.opened) {
-			sessionStorage.setItem('sidebarStatus', 1)
-		} else {
-			sessionStorage.setItem('sidebarStatus', 0)
-		}
+		sessionStorage.setItem('sidebarStatus', 1)
+		// if (state.sidebar.opened) {
+		// 	sessionStorage.setItem('sidebarStatus', 1)
+		// } else {
+		// 	sessionStorage.setItem('sidebarStatus', 0)
+		// }
 	},
 	CLOSE_SIDEBAR: (state, withoutAnimation) => {
 		sessionStorage.setItem('sidebarStatus', 0)

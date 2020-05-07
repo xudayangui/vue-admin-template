@@ -16,20 +16,26 @@
 					{{ scope.row.age }}
 				</template>
 			</el-table-column>
-			<el-table-column label="标题">
+			<el-table-column label="住址">
 				<template slot-scope="scope">
-					{{ scope.row.title }}
+					{{ scope.row.city }}
 				</template>
 			</el-table-column>
 			<el-table-column class-name="status-col" label="状态" width="110" align="center">
 				<template slot-scope="scope">
-					<el-tag :type="scope.row.status?'success':'danger'" effect="dark">{{scope.row.status?'已完成':'未完成'}}</el-tag>
+					<el-tag :type="scope.row.status?'success':'danger'" effect="dark">{{scope.row.status?'已录入':'未录入'}}</el-tag>
 				</template>
 			</el-table-column>
 			<el-table-column align="center" prop="time" label="创建时间" width="200">
 				<template slot-scope="scope">
 					<i class="el-icon-time" />
 					<span>{{ scope.row.time }}</span>
+				</template>
+			</el-table-column>
+			<el-table-column label="操作">
+				<template slot-scope="scope">
+					<el-button type="text">编辑</el-button>
+					<el-button type="text" v-if="scope.row.status">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>

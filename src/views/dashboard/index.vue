@@ -1,6 +1,6 @@
 <template>
 	<div class="dashboard-container">
-		<div class="dashboard-text">用户名: {{ name }}</div>
+		<chart ref="chart1" :options="orgOptions" :auto-resize="true"></chart>
 	</div>
 </template>
 
@@ -8,10 +8,26 @@
 import { mapGetters } from 'vuex'
 export default {
 	name: 'Dashboard',
-	computed: {
-		...mapGetters([
-			'name'
-		])
+	data () {
+		return {
+			orgOptions: {},
+		}
+	},
+	mounted() {
+		this.orgOptions = {
+			xAxis: {
+				type: 'category',
+				data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+			},
+			yAxis: {
+				type: 'value'
+			},
+			series: [{
+				data: [820, 932, 901, 934, 1290, 1330, 1320],
+				type: 'line',
+				smooth: true
+			}]
+		}
 	}
 }
 </script>

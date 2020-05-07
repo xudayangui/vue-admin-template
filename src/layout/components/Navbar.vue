@@ -2,8 +2,12 @@
 	<div class="navbar">
 		<breadcrumb class="breadcrumb-container" />
 		<div class="right-menu">
-			<span style="display:block;cursor:pointer;font-size:15px; margin-right:25px;" @click="logout">
-				<i class="el-icon-switch-button" style="margin-right:5px;"></i>退出
+			<span style="font-size:15px;padding-right:20px;">
+				{{name}}
+			</span>
+			<span style="cursor:pointer;font-size:15px;" @click="logout">
+				<i class="el-icon-switch-button" ></i>
+				退出
 			</span>
 		</div>
 	</div>
@@ -24,7 +28,7 @@ export default {
 	},
 	computed: {
 		...mapGetters([
-			'sidebar',
+			'sidebar','name'
 		])
 	},
 	methods: {
@@ -78,6 +82,7 @@ export default {
 		float: right;
 		height: 100%;
 		line-height: 50px;
+		margin-right: 60px;
 
 		&:focus {
 			outline: none;
