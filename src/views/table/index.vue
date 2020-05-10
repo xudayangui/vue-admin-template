@@ -1,6 +1,6 @@
 <template>
 	<div class="app-container">
-		<el-table v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
+		<el-table v-loading="listLoading" :data="tableData" element-loading-text="Loading" border fit highlight-current-row>
 			<el-table-column align="center" label="ID" width="95">
 				<template slot-scope="scope">
 					{{ scope.$index }}
@@ -35,11 +35,11 @@
 			<el-table-column label="操作">
 				<template slot-scope="scope">
 					<el-button type="text">编辑</el-button>
-					<el-button type="text" v-if="scope.row.status">删除</el-button>
+					<el-button type="text" v-if="scope.row.status" @click="deleteRow(scope.$index, tableData)">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
-		<pagination  :total="total"  :page.sync="listQuery.page"  :limit.sync="listQuery.limit" @pagination="fetchData" />
+		<pagination v-show="false" :total="total"  :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
 	</div>
 </template>
 
@@ -53,15 +53,12 @@ export default {
 	},
 	data() {
 		return {
-			auditList: [],
 			total: 0, // 审计列表总数
 			listQuery: { // 获取审计列表传参集合
-			queryPage: {
-				pageNum: 1, // 当前页
-				pageSize: 10 // 每页显示条数
-				}
+				page: 1,
+				limit: 20,
 			},
-			list: null,
+			tableData: [],
 			listLoading: true
 		};
 	},
@@ -73,9 +70,21 @@ export default {
 			this.listLoading = true;
 			getList().then(response => {
 				this.listLoading = false;
-				this.list = response.data.list;
-				this.total = this.list.length
+				this.tableData = response.data.list;
+				this.total = this.tableData.length
 				
+			});
+		},
+		deleteRow(index, rows){
+			this.$confirm('是否删除?', '提示', {
+				confirmButtonText: '确定',
+				cancelButtonText: '取消',
+				type: 'warning'
+			}).then(() => {
+				 rows.splice(index, 1);
+				 this.$message.success('删除成功')
+			}).catch(() => {
+				this.$message.info('取消')
 			});
 		}
 	}
