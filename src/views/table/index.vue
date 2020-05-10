@@ -34,25 +34,29 @@
 			</el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
-					<el-button type="text">编辑</el-button>
+					<el-button type="text" @click="showDialog=true">编辑</el-button>
 					<el-button type="text" v-if="scope.row.status" @click="deleteRow(scope.$index, tableData)">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
 		<pagination v-show="false" :total="total"  :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
+		<dialogExample :dialog-visible="showDialog" @dialog-cancel="showDialog=false"></dialogExample>
 	</div>
 </template>
 
 <script>
 import Pagination from '@/components/Pagination'
+import dialogExample from '@/components/Dialog'
 import { getList } from "@/api/table";
 
 export default {
 	components: {
-		Pagination
+		Pagination,
+		dialogExample
 	},
 	data() {
 		return {
+			showDialog:false,
 			total: 0, // 审计列表总数
 			listQuery: { // 获取审计列表传参集合
 				page: 1,
