@@ -1,96 +1,93 @@
 #app {
 
     .main-container {
-      min-height: 100%;
-      transition: margin-left .28s;
-      margin-left: $sideBarWidth;
-      position: relative;
+		min-height: 100%;
+		transition: margin-left .28s;
+		margin-left: $sideBarWidth;
+		position: relative;
     }
   
-    .sidebar-container {
-      transition: width 0.28s;
-      width: $sideBarWidth !important;
-      background-color: $menuBg;
-      height: 100%;
-      position: fixed;
-      font-size: 0px;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 1001;
-      overflow: hidden;
+	.sidebar-container {
+		transition: width 0.28s;
+		width: $sideBarWidth !important;
+		background-color: $menuBg;
+		height: 100%;
+		position: fixed;
+		font-size: 0px;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 1001;
+		overflow: hidden;
+	
+		// reset element-ui css
+		.horizontal-collapse-transition {
+			transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+		}
   
-      // reset element-ui css
-      .horizontal-collapse-transition {
-        transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
-      }
+		.scrollbar-wrapper {
+			overflow-x: hidden !important;
+		}
   
-      .scrollbar-wrapper {
-        overflow-x: hidden !important;
-      }
+		.el-scrollbar__bar.is-vertical {
+			right: 0px;
+		}
+	
+		.el-scrollbar {
+			height: 100%;
+		}
+	
+		&.has-logo {
+			.el-scrollbar {
+				height: calc(100% - 50px);
+			}
+      	}
+	
+		.is-horizontal {
+			display: none;
+		}
   
-      .el-scrollbar__bar.is-vertical {
-        right: 0px;
-      }
+		a {
+			display: inline-block;
+			width: 100%;
+			overflow: hidden;
+		}
   
-      .el-scrollbar {
-        height: 100%;
-      }
+		.svg-icon {
+			margin-right: 16px;
+		}
   
-      &.has-logo {
-        .el-scrollbar {
-          height: calc(100% - 50px);
-        }
-      }
+		.el-menu {
+			border: none;
+			height: 100%;
+			width: 100% !important;
+		}
   
-      .is-horizontal {
-        display: none;
-      }
-  
-      a {
-        display: inline-block;
-        width: 100%;
-        overflow: hidden;
-      }
-  
-      .svg-icon {
-        margin-right: 16px;
-      }
-  
-      .el-menu {
-        border: none;
-        height: 100%;
-        width: 100% !important;
-      }
-  
-      // menu hover
-      .submenu-title-noDropdown,
-      .el-submenu__title {
-        &:hover {
-          background-color: $menuHover !important;
-        }
-      }
-  
-      .is-active>.el-submenu__title {
-        color: $subMenuActiveText !important;
-      }
-  
-      & .nest-menu .el-submenu>.el-submenu__title,
-      & .el-submenu .el-menu-item {
-        min-width: $sideBarWidth !important;
-        background-color: $subMenuBg !important;
-  
-        &:hover {
-          background-color: $subMenuHover !important;
-        }
-      }
+		// menu hover
+		.submenu-title-noDropdown,.el-submenu__title {
+			&:hover {
+				background-color: $menuHover !important;
+			}
+		}
+	
+		.is-active>.el-submenu__title {
+			color: $subMenuActiveText !important;
+		}
+	
+		& .nest-menu .el-submenu>.el-submenu__title,& .el-submenu .el-menu-item {
+			min-width: $sideBarWidth !important;
+			background-color: $subMenuBg !important;
+	
+			&:hover {
+				background-color: $subMenuHover !important;
+			}
+      	}
     }
   
     .hideSidebar {
-      .sidebar-container {
-        width: 54px !important;
-      }
-  
+    	.sidebar-container {
+        	width: 54px !important;
+      	}
       .main-container {
         margin-left: 54px;
       }
@@ -100,7 +97,7 @@
         position: relative;
   
         .el-tooltip {
-          padding: 0 !important;
+        //   padding: 0 !important;
   
           .svg-icon {
             margin-left: 20px;
@@ -112,7 +109,7 @@
         overflow: hidden;
   
         &>.el-submenu__title {
-          padding: 0 !important;
+        //   padding: 0 !important;
   
           .svg-icon {
             margin-left: 20px;
@@ -140,7 +137,7 @@
     }
   
     .el-menu--collapse .el-menu .el-submenu {
-      min-width: $sideBarWidth !important;
+      	min-width: $sideBarWidth !important;
     }
   
     // mobile responsive

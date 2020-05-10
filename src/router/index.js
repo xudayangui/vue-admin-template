@@ -50,7 +50,7 @@ export const constantRoutes = [
 			path: 'dashboard',
 			name: 'Dashboard',
 			component: () => import('@/views/dashboard/index'),
-			meta: { title: '首页' }
+			meta: { title: '首页' , icon: 'el-icon-menu'}
 		}]
 	},
 
@@ -59,7 +59,7 @@ export const constantRoutes = [
 		component: Layout,
 		redirect: '/example/table',
 		name: 'Example',
-		meta: { title: '综合实例'},
+		meta: { title: '综合实例',icon: 'el-icon-s-operation'},
 		children: [
 		{
 			path: 'table',
@@ -84,7 +84,7 @@ export const constantRoutes = [
 			path: 'index',
 			name: 'Form',
 			component: () => import('@/views/form/index'),
-			meta: { title: '表单'}
+			meta: { title: '表单',icon: 'el-icon-document'}
 		}
 		]
 	},
@@ -94,7 +94,7 @@ export const constantRoutes = [
 		component: Layout,
 		redirect: '/nested/menu1',
 		name: 'Nested',
-		meta: {title: '嵌套菜单'},
+		meta: {title: '嵌套菜单',icon: 'el-icon-setting'},
 		children: [
 			{
 				path: 'menu1',

@@ -39,15 +39,28 @@
 				</template>
 			</el-table-column>
 		</el-table>
+		<pagination  :total="total"  :page.sync="listQuery.page"  :limit.sync="listQuery.limit" @pagination="fetchData" />
 	</div>
 </template>
 
 <script>
+import Pagination from '@/components/Pagination'
 import { getList } from "@/api/table";
 
 export default {
+	components: {
+		Pagination
+	},
 	data() {
 		return {
+			auditList: [],
+			total: 0, // 审计列表总数
+			listQuery: { // 获取审计列表传参集合
+			queryPage: {
+				pageNum: 1, // 当前页
+				pageSize: 10 // 每页显示条数
+				}
+			},
 			list: null,
 			listLoading: true
 		};
@@ -59,8 +72,10 @@ export default {
 		fetchData() {
 			this.listLoading = true;
 			getList().then(response => {
-				this.list = response.data.list;
 				this.listLoading = false;
+				this.list = response.data.list;
+				this.total = this.list.length
+				
 			});
 		}
 	}
