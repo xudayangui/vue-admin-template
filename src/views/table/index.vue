@@ -40,7 +40,7 @@
 			</el-table-column>
 		</el-table>
 		<pagination v-show="false" :total="total"  :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
-		<dialogExample :dialog-visible="showDialog" @dialog-cancel="showDialog=false"></dialogExample>
+		<dialogExample :dialog-visible="showDialog" @dialog-cancel="showDialog=false" :copyModel="copyModel"></dialogExample>
 	</div>
 </template>
 
@@ -56,6 +56,7 @@ export default {
 	},
 	data() {
 		return {
+			copyModel:{},
 			showDialog:false,
 			total: 0, // 审计列表总数
 			listQuery: { // 获取审计列表传参集合
