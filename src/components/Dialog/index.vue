@@ -1,7 +1,7 @@
 <template>
-    <el-dialog title="编辑" :visible.sync="dialogVisible" :before-close="cancel" :model="model">
+    <el-dialog title="编辑" :visible.sync="dialogVisible" :before-close="cancel" :model="copyModel">
         <div class="dialog-content">
-            {{model}}
+            {{copyModel}}
         </div>
         <span slot="footer" class="dialog-footer">
             <el-button @click="cancel">取 消</el-button>
@@ -12,16 +12,11 @@
 <script>
 export default {
     name: 'dialogExample',
+    props:["copyModel","dialogVisible"],
     data() {
         return {
             model:{}
         }
-    },
-    props: {
-        dialogVisible: {
-            type: Boolean,
-            default: false,
-        },
     },
     methods: {
        cancel() {
