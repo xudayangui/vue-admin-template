@@ -98,43 +98,15 @@ export const constantRoutes = [
 		children: [
 			{
 				path: 'menu1',
-				component: () => import('@/views/nested/menu1/index'), // 父路由器视图  router-view
+				component: () => import('@/views/nested/menu1/index'), 
 				name: 'Menu1',
-				meta: { title: '一级嵌套' },
-				children: [
-				{
-					path: 'menu1-1',
-					component: () => import('@/views/nested/menu1/menu1-1'),
-					name: 'Menu1-1',
-					meta: { title: '二级' }
-				},
-				{
-					path: 'menu1-2',
-					component: () => import('@/views/nested/menu1/menu1-2'),
-					name: 'Menu1-2',
-					meta: { title: '二级嵌套' },
-					children: [
-						{
-							path: 'menu1-2-1',
-							component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-							name: 'Menu1-2-1',
-							meta: { title: '三级' }
-						},
-						{
-							path: 'menu1-2-2',
-							component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-							name: 'Menu1-2-2',
-							meta: { title: '三级' }
-						}
-					]
-				}
-			]
-		},
-		{
-			path: 'menu2',
-			component: () => import('@/views/nested/menu2/index'),
-			meta: { title: '一级' }
-		}
+				meta: { title: '一级' },
+			},
+			{
+				path: 'menu2',
+				component: () => import('@/views/nested/menu2/index'),
+				meta: { title: '一级' }
+			}
 		]
 	},
 	// 404 page 必须放在随后
