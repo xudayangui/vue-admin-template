@@ -83,6 +83,14 @@ module.exports = {
 						}])
 						.end()
 					config
+						.plugin('preload')
+						.tap(options => {
+							options[0].fileBlacklist = options[0].fileBlacklist || []
+							options[0].fileBlacklist.push(/runtime\..*\.js$/)
+							return options
+						})
+						.end()
+					config
 						.optimization.splitChunks({
 							chunks: 'all',
 							cacheGroups: {
