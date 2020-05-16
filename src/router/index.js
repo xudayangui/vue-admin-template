@@ -87,7 +87,7 @@ export const constantRoutes = [
 		component: Layout,
 		redirect: '/charts/DiscountFigure',
 		name: 'Charts',
-		meta: { title: '图表',icon: 'el-icon-s-operation'},
+		meta: { title: '图表',icon: 'el-icon-s-data'},
 		children: [
 			{
 				path: 'DiscountFigure',
