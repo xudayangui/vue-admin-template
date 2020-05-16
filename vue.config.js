@@ -17,7 +17,7 @@ const port = process.env.port || process.env.npm_config_port || 9528 // dev port
 
 //所有配置项说明都可以在https://cli.vuejs.org/config/中找到
 module.exports = {
-	publicPath: "/vue-admin-template/", //默认'/'，部署应用包时的基本 URL
+	publicPath: process.env.NODE_ENV === "production" ? "/vue-admin-template/" : "/", //默认'/'，部署应用包时的基本 URL
 	outputDir: 'dist', // 输出文件目录
 	assetsDir: 'static', // 静态文件目录
 	lintOnSave: false,   // eslint-loader 是否在保存的时候检查
