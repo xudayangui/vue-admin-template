@@ -50,18 +50,13 @@
                     contentType: false,
                     processData: false,
                     headers: {
-                    "Content-Type": "multipart/form-data" //后台接收类型是form-data
-                    // "Content-Type": "application/x-www-form-urlencoded"
+                        "Content-Type": "multipart/form-data" //后台接收类型是form-data
+                        // "Content-Type": "application/x-www-form-urlencoded"
                     }
                 };
                 //请求接口  可在api.js中自定义
-                this.$api.systemModule.uploadFile(params, config).then(res => {
-                    if (res.data.code === this.$config.RET_CODE.SUCCESS_CODE) {
-                        console.log(res.data.data)
-                        this.$message.success("上传成功");
-                    } else {
-                        this.$message.error(res.data.retmsg);
-                    }
+                this.uploadFile(params, config).then(res => {
+                    
                 }).catch(err => {
                     console.log(err);
                 });
@@ -93,8 +88,8 @@
                 };
                 this.importLoaing = true;
                 //上传回选
-                this.$api.systemModule.uploadFile(params, config).then(res => {
-                    if (res.data.code === this.$config.RET_CODE.SUCCESS_CODE) {
+                this.uploadFile(params, config).then(res => {
+                    if (res.data.code === 200) {
                         let data = res.data.data;
                         this.$message.success("上传成功");
                     } else {
@@ -133,11 +128,11 @@
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }
-                this.$api.systemModule.uploadFile(params,config).then(res => {
-                    if(res.data.retcode === this.$config.RET_CODE.SUCCESS_CODE){
-                        this.$message.success(res.data.retmsg)
+                this.uploadFile(params,config).then(res => {
+                    if(res.data.retcode === 200){
+                        
                     }else{
-                        this.$message.error(res.data.retmsg)
+                        
                     }
                 }).catch(err => {
                     console.log(err)
