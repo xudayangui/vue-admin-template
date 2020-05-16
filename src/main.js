@@ -5,6 +5,8 @@ import 'normalize.css/normalize.css' // 重置 css 样式
 import ElementUI from 'element-ui'  //引进element ui
 import 'element-ui/lib/theme-chalk/index.css' //引进element ui css
 
+import VCharts from 'v-charts' //引进v-charts
+
 import '@/styles/index.scss' // 全局 css
 
 import App from './App'  //挂载 vue
@@ -14,6 +16,7 @@ import router from './router' //引进路由
 import '@/permission' // permission control
 
 Vue.use(ElementUI)
+Vue.use(VCharts)
 Vue.config.productionTip = false
 
 new Vue({

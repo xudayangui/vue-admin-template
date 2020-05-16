@@ -53,7 +53,6 @@ export const constantRoutes = [
 			meta: { title: '首页' , icon: 'el-icon-menu'}
 		}]
 	},
-
 	{
 		path: '/example',
 		component: Layout,
@@ -81,6 +80,85 @@ export const constantRoutes = [
 				component: () => import('@/views/upLoad/index'),
 				meta: { title: '上传'}
 			}
+		]
+	},
+	{
+		path: '/charts',
+		component: Layout,
+		redirect: '/charts/DiscountFigure',
+		name: 'Charts',
+		meta: { title: '图表',icon: 'el-icon-s-operation'},
+		children: [
+			{
+				path: 'DiscountFigure',
+				component: () => import('@/views/charts/DiscountFigure'),
+				meta: { title: '折线图' }
+			},
+			{
+				path: 'columnar',
+				component: () => import('@/views/charts/columnar'),
+				meta: { title: '柱状图' }
+			},
+			{
+				path: 'barGraph',
+				component: () => import('@/views/charts/barGraph'),
+				meta: { title: '条形图' }
+			},
+			{
+				path: 'pieChart',
+				component: () => import('@/views/charts/pieChart'),
+				meta: { title: '饼图' }
+			},
+			{
+				path: 'ringChart',
+				component: () => import('@/views/charts/ringChart'),
+				meta: { title: '环图' }
+			},
+			{
+				path: 'waterfallCharts',
+				component: () => import('@/views/charts/waterfallCharts'),
+				meta: { title: '瀑布图' }
+			},
+			{
+				path: 'funnelCharts',
+				component: () => import('@/views/charts/funnelCharts'),
+				meta: { title: '漏斗图' }
+			},
+			{
+				path: 'radarCharts',
+				component: () => import('@/views/charts/radarCharts'),
+				meta: { title: '雷达图' }
+			},
+			{
+				path: 'sankeyChart',
+				component: () => import('@/views/charts/sankeyChart'),
+				meta: { title: '桑基图' }
+			},
+			{
+				path: 'heatmapChart',
+				component: () => import('@/views/charts/heatmapChart'),
+				meta: { title: '热力图' }
+			},
+			{
+				path: 'scatterChart',
+				component: () => import('@/views/charts/scatterChart'),
+				meta: { title: '散力图' }
+			},
+			{
+				path: 'candleChart',
+				component: () => import('@/views/charts/candleChart'),
+				meta: { title: 'K线图' }
+			},
+			{
+				path: 'gaugeChart',
+				component: () => import('@/views/charts/gaugeChart'),
+				meta: { title: '仪表图' }
+			},
+			{
+				path: 'treeChart',
+				component: () => import('@/views/charts/treeChart'),
+				meta: { title: '树图' }
+			},
 		]
 	},
 	{
