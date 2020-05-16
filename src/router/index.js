@@ -61,51 +61,39 @@ export const constantRoutes = [
 		name: 'Example',
 		meta: { title: '综合实例',icon: 'el-icon-s-operation'},
 		children: [
-		{
-			path: 'table',
-			name: 'Table',
-			component: () => import('@/views/table/index'),
-			meta: { title: '表格' }
-		},
-		{
-			path: 'tree',
-			name: 'Tree',
-			component: () => import('@/views/tree/index'),
-			meta: { title: '树形' }
-		}
-		]
-	},
-
-	{
-		path: '/form',
-		component: Layout,
-		children: [
-		{
-			path: 'index',
-			name: 'Form',
-			component: () => import('@/views/form/index'),
-			meta: { title: '表单',icon: 'el-icon-document'}
-		}
-		]
-	},
-
-	{
-		path: '/nested',
-		component: Layout,
-		redirect: '/nested/menu1',
-		name: 'Nested',
-		meta: {title: '嵌套菜单',icon: 'el-icon-setting'},
-		children: [
 			{
-				path: 'menu1',
-				component: () => import('@/views/nested/menu1/index'), 
-				name: 'Menu1',
-				meta: { title: '一级' },
+				path: 'table',
+				component: () => import('@/views/table/index'),
+				meta: { title: '表格' }
 			},
 			{
-				path: 'menu2',
-				component: () => import('@/views/nested/menu2/index'),
-				meta: { title: '一级' }
+				path: 'tree',
+				component: () => import('@/views/tree/index'),
+				meta: { title: '树形' }
+			},
+			{
+				path: 'form',
+				component: () => import('@/views/form/index'),
+				meta: { title: '表单'}
+			}
+		]
+	},
+	{
+		path: '/setting',
+		component: Layout,
+		redirect: '/setting/personal',
+		name: 'Setting',
+		meta: {title: '设置',icon: 'el-icon-setting'},
+		children: [
+			{
+				path: 'personal',
+				component: () => import('@/views/setting/personal/index'), 
+				meta: { title: '个人设置' },
+			},
+			{
+				path: 'permission',
+				component: () => import('@/views/setting/permission/index'),
+				meta: { title: '权限设置' }
 			}
 		]
 	},
