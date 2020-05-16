@@ -83,6 +83,7 @@ module.exports = {
 						}])
 						.end()
 					config
+					// 修改 preload 的配置 忽略为 runtime 添加 preload
 						.plugin('preload')
 						.tap(options => {
 							options[0].fileBlacklist = options[0].fileBlacklist || []
