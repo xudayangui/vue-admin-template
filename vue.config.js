@@ -44,6 +44,9 @@ module.exports = {
 	},
 	configureWebpack: {
 		name: name,
+		performance: {
+			hints:false // 取消打包文件过大的警告
+		},
 		resolve: {
 			// 添加别名 alias
 			alias: {
