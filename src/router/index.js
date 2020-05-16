@@ -75,6 +75,11 @@ export const constantRoutes = [
 				path: 'form',
 				component: () => import('@/views/form/index'),
 				meta: { title: '表单'}
+			},
+			{
+				path: 'upLoad',
+				component: () => import('@/views/upLoad/index'),
+				meta: { title: '上传'}
 			}
 		]
 	},
