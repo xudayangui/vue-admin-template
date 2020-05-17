@@ -58,7 +58,7 @@ export const constantRoutes = [
 		component: Layout,
 		redirect: '/example/table',
 		name: 'Example',
-		meta: { title: '综合实例',icon: 'el-icon-s-operation'},
+		meta: { title: '综合',icon: 'el-icon-s-operation'},
 		children: [
 			{
 				path: 'table',
@@ -79,6 +79,11 @@ export const constantRoutes = [
 				path: 'upLoad',
 				component: () => import('@/views/upLoad/index'),
 				meta: { title: '上传'}
+			},
+			{
+				path: 'excel',
+				component: () => import('@/views/excel/index'),
+				meta: { title: 'Excel'}
 			}
 		]
 	},
