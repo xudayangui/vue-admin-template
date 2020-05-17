@@ -47,3 +47,11 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+
+.el-badge__content.is-fixed.is-dot {
+  right: 9px;
+  top: 16px;
+}
+.el-drawer__header {
+  margin-bottom: 0px !important;
+}
