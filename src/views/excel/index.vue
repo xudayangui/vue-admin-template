@@ -20,9 +20,12 @@
             <el-button :loading="downloadLoading" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleDownload">
                 导出全部
             </el-button>
-             <el-button :loading="downloadLoading_select" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleSelectionDownload">
+            <el-button :loading="downloadSelectLoading" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleSelectionDownload">
                 导出选中
             </el-button>
+            <!-- <el-button :loading="importExcelLoading" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleImportExcel">
+                导入
+            </el-button> -->
         </el-form>
 		<el-table ref="multipleTable" @selection-change="handleSelectionChange" v-loading="listLoading" :data="tableData" element-loading-text="Loading" border fit highlight-current-row>
 			<el-table-column type="selection" align="center" />
@@ -69,7 +72,8 @@ export default {
 		return {
             multipleSelection:[],
             downloadLoading:false,
-            downloadLoading_select:false,
+            downloadSelectLoading:false,
+            importExcelLoading:false,
             form:{
                 bookType:"xlsx",
                 filename:"表格",
@@ -93,7 +97,7 @@ export default {
         handleSelectionChange(val) {
             this.multipleSelection = val
         },
-        exportExcel(Header,filterVal,list){
+        exportExcel(type,Header,filterVal,list){
             import('@/vendor/Export2Excel').then(excel => {
                 const tHeader = Header
                 const data = this.formatJson(filterVal, list)
@@ -104,23 +108,30 @@ export default {
                     autoWidth: this.form.autoWidth,
                     bookType: this.form.bookType
                 })
+                console.error(type)
+                if(type=='all'){
+                    this.downloadLoading = false
+                }else{
+                    this.downloadSelectLoading = false
+                    this.$refs.multipleTable.clearSelection()
+                }
             })
         },
+        //导出全部
         handleDownload(){
             this.downloadLoading = true
             const Header = ['编号', '用户名', '年龄', '住址', '状态','创建时间']
             const filterVal = ['id', 'name', 'age', 'city', 'status', 'time']
-            this.exportExcel(Header,filterVal,this.tableData)
-            this.downloadLoading_select = false
+            this.exportExcel('all',Header,filterVal,this.tableData)
+           
         },
+        //导出选中
         handleSelectionDownload(){
             if (this.multipleSelection.length) {
-                this.downloadLoading_select = true
+                this.downloadSelectLoading = true
                 const Header = ['编号', '用户名', '年龄', '住址', '状态','创建时间']
                 const filterVal = ['id', 'name', 'age', 'city', 'status', 'time']
-                this.exportExcel(Header,filterVal,this.multipleSelection)
-                this.$refs.multipleTable.clearSelection()
-                this.downloadLoading_select = false
+                this.exportExcel('select',Header,filterVal,this.multipleSelection)
             } else {
                 this.$message({
                     message: '请选择要导出的内容',
@@ -128,6 +139,8 @@ export default {
                 })
             }
         },
+        //导入
+
         formatJson(filterVal, jsonData) {
             return jsonData.map(i => filterVal.map(element => {
                 if (element === 'timestamp') {
