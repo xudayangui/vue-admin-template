@@ -1,23 +1,27 @@
 <template>
-  <ve-ring :data="chartData"></ve-ring>
+  <ve-ring :data="chartData"  height="800px" :settings="chartSettings"></ve-ring>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        chartData: {
-          columns: ['日期', '访问用户'],
-          rows: [
-            { '日期': '1/1', '访问用户': 1393 },
-            { '日期': '1/2', '访问用户': 3530 },
-            { '日期': '1/3', '访问用户': 2923 },
-            { '日期': '1/4', '访问用户': 1723 },
-            { '日期': '1/5', '访问用户': 3792 },
-            { '日期': '1/6', '访问用户': 4593 }
-          ]
-        }
-      }
-    }
-  }
+	export default {
+		data() {
+			this.chartSettings = {
+				radius: [300,250],
+				offsetY: 400
+			}
+			return {
+				chartData: {
+					columns: ['日期', '访问用户'],
+					rows: [
+						{ '日期': '4月1日', '访问用户': 1393 },
+						{ '日期': '4月2日', '访问用户': 3530 },
+						{ '日期': '4月3日', '访问用户': 2923 },
+						{ '日期': '4月4日', '访问用户': 1723 },
+						{ '日期': '4月5日', '访问用户': 3792 },
+						{ '日期': '4月6日', '访问用户': 4593 }
+					]
+				}
+			}
+		}
+	}
 </script>

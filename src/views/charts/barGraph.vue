@@ -1,5 +1,5 @@
 <template>
-  <ve-bar :data="chartData"></ve-bar>
+  <ve-bar :data="chartData" height="800px"></ve-bar>
 </template>
 
 <script>

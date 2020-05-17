@@ -1,5 +1,5 @@
 <template>
-    <ve-scatter :data="chartData"></ve-scatter>
+    <ve-scatter :data="chartData" height="800px"></ve-scatter>
 </template>
 
 <script>

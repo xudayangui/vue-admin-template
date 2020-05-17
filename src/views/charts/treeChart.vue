@@ -1,5 +1,5 @@
 <template>
-    <ve-tree :data="chartData"></ve-tree>
+    <ve-tree :data="chartData" height="800px"></ve-tree>
 </template>
 
 <script>

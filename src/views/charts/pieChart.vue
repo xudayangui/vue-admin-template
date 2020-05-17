@@ -1,10 +1,14 @@
 <template>
-    <ve-pie :data="chartData"></ve-pie>
+    <ve-pie :data="chartData" height="800px" :settings="chartSettings"></ve-pie>
 </template>
 
 <script>
     export default {
         data() {
+            this.chartSettings = {
+                radius: 300,
+                offsetY: 400
+            }
             return {
                 chartData: {
                 columns: ['日期', '访问用户'],

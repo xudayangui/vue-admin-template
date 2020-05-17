@@ -1,5 +1,5 @@
 <template>
-    <ve-waterfall :data="chartData"></ve-waterfall>
+    <ve-waterfall :data="chartData" height="800px"></ve-waterfall>
 </template>
 
 <script>
