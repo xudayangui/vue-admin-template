@@ -1,6 +1,6 @@
 <template>
 	<div style="padding: 0 15px;" @click="toggleClick">
-		<i :class="isActive?'el-icon-d-arrow-left':'el-icon-d-arrow-right'"></i>
+		<i :class="isActive?'el-icon-s-fold':'el-icon-s-unfold'"></i>
 	</div>
 </template>
 
