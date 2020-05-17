@@ -1,5 +1,5 @@
 <template>
-  <ve-ring :data="chartData"  height="800px" :settings="chartSettings"></ve-ring>
+  <ve-ring :data="chartData"  height="800px" :settings="chartSettings" style="margin-top:150px;"></ve-ring>
 </template>
 
 <script>
