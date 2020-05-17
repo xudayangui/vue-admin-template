@@ -1,6 +1,6 @@
 <template>
 	<div class="app-container">
-        <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="120px">
+        <el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
              <el-form-item label="文件名称">
                 <el-input v-model="form.filename" placeholder="文件名称" style="width:200px;" prefix-icon="el-icon-document" />
             </el-form-item>
