@@ -1,41 +1,9 @@
 <template>
     <div>
-        <el-row :gutter="20">
-            <el-col :span="8">
-                <el-card shadow="hover" class="mgb20">
-                    <div class="user-info">
-                        <img src="../../assets/logo/logo.png" class="user-avator" alt />
-                        <div class="user-info-cont">
-                            <div class="user-info-name">{{name}}</div>
-                            <div>{{role}}</div>
-                        </div>
-                    </div>
-                    <div class="user-info-list">
-                        上次登录时间：
-                        <span>{{formatLocalTime(new Date())}}</span>
-                    </div>
-                    <div class="user-info-list">
-                        上次登录地点：
-                        <span>北京</span>
-                    </div>
-                </el-card>
-                <el-card shadow="hover" >
-                    <div slot="header" class="clearfix">
-                        <span>分布</span>
-                    </div>
-					北京
-                    <el-progress :percentage="71.3" color="#42b983"></el-progress>
-					上海
-                    <el-progress :percentage="44.1" color="#f1e05a"></el-progress>
-					广州
-                    <el-progress :percentage="55.8"></el-progress>
-					杭州
-                    <el-progress :percentage="60" color="#f56c6c"></el-progress>
-                </el-card>
-            </el-col>
-            <el-col :span="16">
-                <el-row :gutter="20" class="mgb20">
-                    <el-col :span="8">
+        <el-row :gutter="20" class="mgl20 mgr20">
+            <el-col :span="24">
+                <el-row :gutter="20" class="mgb20 mgt20">
+                    <el-col :span="4">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-1">
                                 <i class="el-icon-user-solid grid-con-icon"></i>
@@ -46,7 +14,51 @@
                             </div>
                         </el-card>
                     </el-col>
-                    <el-col :span="8">
+					<el-col :span="4">
+                        <el-card shadow="hover" :body-style="{padding: '0px'}">
+                            <div class="grid-content grid-con-1">
+                                <i class="el-icon-user-solid grid-con-icon"></i>
+                                <div class="grid-cont-right">
+                                    <div class="grid-num">1234</div>
+                                    <div>用户下单量</div>
+                                </div>
+                            </div>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-card shadow="hover" :body-style="{padding: '0px'}">
+                            <div class="grid-content grid-con-1">
+                                <i class="el-icon-user-solid grid-con-icon"></i>
+                                <div class="grid-cont-right">
+                                    <div class="grid-num">1234</div>
+                                    <div>下单成功量</div>
+                                </div>
+                            </div>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-card shadow="hover" :body-style="{padding: '0px'}">
+                            <div class="grid-content grid-con-3">
+                                <i class="el-icon-s-goods grid-con-icon"></i>
+                                <div class="grid-cont-right">
+                                    <div class="grid-num">2450</div>
+                                    <div>下单金额</div>
+                                </div>
+                            </div>
+                        </el-card>
+                    </el-col>
+					<el-col :span="4">
+                        <el-card shadow="hover" :body-style="{padding: '0px'}">
+                            <div class="grid-content grid-con-3">
+                                <i class="el-icon-s-goods grid-con-icon"></i>
+                                <div class="grid-cont-right">
+                                    <div class="grid-num">2450</div>
+                                    <div>下单成功金额</div>
+                                </div>
+                            </div>
+                        </el-card>
+                    </el-col>
+					<el-col :span="4">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-2">
                                 <i class="el-icon-message-solid grid-con-icon"></i>
@@ -57,45 +69,68 @@
                             </div>
                         </el-card>
                     </el-col>
-                    <el-col :span="8">
-                        <el-card shadow="hover" :body-style="{padding: '0px'}">
-                            <div class="grid-content grid-con-3">
-                                <i class="el-icon-s-goods grid-con-icon"></i>
-                                <div class="grid-cont-right">
-                                    <div class="grid-num">2450</div>
-                                    <div>充值金额</div>
-                                </div>
-                            </div>
-                        </el-card>
+                </el-row>
+            </el-col>
+			<el-col :span="24">
+				<el-row :gutter="20" class="mgb20 mgt20">
+                    <el-col :span="12">
+                        <el-card shadow="hover" style="height:450px;"  class="mgb20">
+							<div slot="header" class="clearfix">
+								<span>异常订单</span>
+							</div>
+							<el-table  :data="todoList" style="width:100%;" height="400">
+								<el-table-column label="下单时间">
+									<template slot-scope="scope" >
+										2020/05/02
+									</template>
+								</el-table-column>
+								<el-table-column label="下单数量">
+									<template slot-scope="scope">
+										<div class="todo-item" :class="{'todo-item-del': scope.row.status}">
+											{{scope.row.title}}
+										</div>
+									</template>
+								</el-table-column>
+								<el-table-column label="下单金额">
+									<template slot-scope="scope">
+										<div class="todo-item" :class="{'todo-item-del': scope.row.status}">
+											{{scope.row.title}}
+										</div>
+									</template>
+								</el-table-column>
+							</el-table>
+						</el-card>
+                    </el-col>
+					<el-col :span="12">
+                        <el-card shadow="hover" style="height:450px; "  class="mgb20">
+							<div slot="header" class="clearfix">
+								<span>异常登录</span>
+							</div>
+							<el-table :data="todoList" style="width:100%;" height="400">
+								<el-table-column label="登录时间">
+									<template slot-scope="scope">
+										2020/05/02
+									</template>
+								</el-table-column>
+								<el-table-column label="登录地点">
+									<template slot-scope="scope">
+										<div class="todo-item" :class="{'todo-item-del': scope.row.status}">
+											{{scope.row.title}}
+										</div>
+									</template>
+								</el-table-column>
+								<el-table-column label="登录IP">
+									<template slot-scope="scope">
+										<div class="todo-item" :class="{'todo-item-del': scope.row.status}">
+											{{scope.row.title}}
+										</div>
+									</template>
+								</el-table-column>
+							</el-table>
+						</el-card>
                     </el-col>
                 </el-row>
-                <el-card shadow="hover" style="height:388px;"  class="mgb20">
-                    <div slot="header" class="clearfix">
-                        <span>待办事项</span>
-                        <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
-                    </div>
-                    <el-table :show-header="false" :data="todoList" style="width:100%;">
-                        <el-table-column width="40">
-                            <template slot-scope="scope">
-                                <el-checkbox v-model="scope.row.status"></el-checkbox>
-                            </template>
-                        </el-table-column>
-                        <el-table-column>
-                            <template slot-scope="scope">
-                                <div class="todo-item" :class="{'todo-item-del': scope.row.status}">
-									{{scope.row.title}}
-								</div>
-                            </template>
-                        </el-table-column>
-                        <el-table-column width="60">
-                            <template>
-                                <span class="btn"><i class="el-icon-edit"></i></span>
-								<span class="btn"><i class="el-icon-delete"></i></span>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </el-card>
-            </el-col>
+			</el-col>
 			<el-col :span="8">
                 <el-card shadow="hover" class="mgb20" style="height:600px;">
 					<ve-line :data="chartData" height="400px" style="margin-top:100px;"></ve-line>
@@ -194,6 +229,9 @@ export default {
 
 
 <style scoped>
+.el-col {
+    border-radius: 4px;
+  }
 .btn {
 	cursor: pointer;
 }
@@ -273,6 +311,15 @@ export default {
 }
 .mgb20 {
     margin-bottom: 20px;
+}
+.mgt20 {
+    margin-top: 20px;
+}
+.mgl20 {
+    margin-left: 20px !important;
+}
+.mgr20 {
+    margin-right: 20px !important;
 }
 .todo-item {
     font-size: 14px;
