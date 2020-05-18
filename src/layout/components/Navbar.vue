@@ -3,8 +3,15 @@
 		<hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 		<breadcrumb class="breadcrumb-container" />
 		<div class="right-menu">
-			<el-badge is-dot @click.native="toggleMsgShow" style="margin-right:10px;">
-              	<i class="el-icon-message-solid"></i>
+			<span @click="handleFullScreen" class="fullScreen">
+				<el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
+					<i class="el-icon-full-screen"></i>
+				</el-tooltip>
+			</span>
+			<el-badge is-dot @click.native="toggleMsgShow">
+				<el-tooltip effect="dark" content="消息" placement="bottom">
+					<i class="el-icon-message-solid"></i>
+				</el-tooltip>
             </el-badge>
 			<el-dropdown trigger="click">
 				<span class="el-dropdown-link">
@@ -21,16 +28,6 @@
 					<el-dropdown-item divided @click.native="logout">退出</el-dropdown-item>
 				</el-dropdown-menu>
 			</el-dropdown>
-			<el-drawer  title="消息中心" size="18%" :visible.sync="drawer"  >
-				<ul class="conUl">
-					<li v-for="item in msgList" :key="item.id">
-					<router-link :to="item.link" class="conUl_link">
-						<el-link class="conUl_sp0" :underline="false">{{ item.content }}</el-link>
-						<span class="conUl_sp1">{{ item.time }}</span>
-					</router-link>
-					</li>
-				</ul>
-			</el-drawer>
 		</div>
 	</div>
 </template>
@@ -42,55 +39,54 @@ import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 //引入展开 收缩菜单栏 组件
 import Hamburger from '@/components/Hamburger'
-
 export default {
-	data() {
-		return {
-			drawer: false,
-			msgList: [
-				{
-					id: '1',
-					content: '优惠券到期提醒',
-					link: '',
-					time: '2019-06-01'
-				},
-				{
-					id: '2',
-					content: '618大促，请查看活动具体信息',
-					link: '',
-					time: '2019-06-02'
-				},
-				{
-					id: '3',
-					content: '充值成功',
-					link: '',
-					time: '2019-07-02'
-				},
-				{
-					id: '4',
-					content: '密码充值成功！',
-					link: '',
-					time: '2019-07-02'
-				}
-			]
-		};
+	 data() {
+        return {
+            fullscreen: false,
+        };
     },
 	components: {
 		Breadcrumb,
 		Hamburger
 	},
 	computed: {
+		
 		...mapGetters([
 			'sidebar','name'
 		])
 	},
 	methods: {
-		toggleMsgShow(){
-			this.drawer = true
-		},
+		toggleMsgShow(){},
 		//伸缩
 		toggleSideBar() {
 			this.$store.dispatch('app/toggleSideBar')
+		},
+		//全屏
+		handleFullScreen(){
+			let element = document.documentElement;
+            if (this.fullscreen) {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            } else {
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.webkitRequestFullScreen) {
+                    element.webkitRequestFullScreen();
+                } else if (element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if (element.msRequestFullscreen) {
+                    // IE11
+                    element.msRequestFullscreen();
+                }
+            }
+            this.fullscreen = !this.fullscreen;
 		},
 		//退出
 		async logout() {
@@ -110,9 +106,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fullScreen {
+	padding-right:10px;
+	cursor: pointer;
+}
 .el-dropdown-link {
     cursor: pointer;
-    color: #409EFF;
+	color: #409EFF;
+	display: inline-block;
+	line-height: 30px;
+	padding: 10px;
+	&:hover {
+		background: rgba(0, 0, 0, .025)
+	}
 }
 .el-icon-arrow-down {
     font-size: 12px;
@@ -166,7 +172,7 @@ export default {
 		float: right;
 		height: 100%;
 		line-height: 50px;
-		margin-right: 60px;
+		margin-right: 30px;
 
 		&:focus {
 			outline: none;

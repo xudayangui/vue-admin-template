@@ -50,7 +50,7 @@ export const constantRoutes = [
 			path: 'dashboard',
 			name: 'Dashboard',
 			component: () => import('@/views/dashboard/index'),
-			meta: { title: '首页' , icon: 'el-icon-menu'}
+			meta: { title: '首页' , icon: 'el-icon-s-home'}
 		}]
 	},
 	{
@@ -73,12 +73,34 @@ export const constantRoutes = [
 			{
 				path: 'form',
 				component: () => import('@/views/form/index'),
-				meta: { title: '表单'}
-			},
-			{
-				path: 'upLoad',
-				component: () => import('@/views/upLoad/index'),
-				meta: { title: '上传'}
+				name: 'Form',
+				meta: { title: '表单'},
+				children: [
+					{
+						path: 'basicForm',
+						component: () => import('@/views/form/basicForm'),
+						name: 'BasicForm',
+						meta: { title: '基本表单' }
+					},
+					{
+						path: 'editor',
+						component: () => import('@/views/form/editor'),
+						name: 'Editor',
+						meta: { title: '富文本' }
+					},
+					{
+						path: 'markdown',
+						component: () => import('@/views/form/markdown'),
+						name: 'Markdown',
+						meta: { title: 'Markdown' }
+					},
+					{
+						path: 'upLoad',
+						component: () => import('@/views/form/upLoad'),
+						name: 'UpLoad',
+						meta: { title: '上传'}
+					}
+				]
 			},
 			{
 				path: 'excel',

@@ -1,5 +1,28 @@
 <template>
 	<div class="app-container">
+		<el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
+             <el-form-item label="用户名">
+                <el-input v-model="form.userName" placeholder="用户名" style="width:200px;" />
+            </el-form-item>
+			 <el-form-item label="年龄" >
+                <el-input v-model="form.age" placeholder="年龄" style="width:200px;" />
+            </el-form-item>
+             <el-form-item label="状态" placeholder="请选择">
+				<el-select v-model="form.status" style="width:120px;">
+					<el-option label="已录入" value="1"/>
+					<el-option label="未录入" value="0"/>
+				</el-select>
+            </el-form-item>
+            <el-form-item label="时间">
+				<el-date-picker v-model="form.date" type="datetimerange" align="right" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="['08:00:00', '08:00:00']"></el-date-picker>
+            </el-form-item>
+            <el-button  style="margin:0 0 20px 20px;" type="primary" icon="el-icon-search" @click="handleSearch">
+                搜索
+            </el-button>
+            <el-button  style="margin:0 0 20px 20px;" icon="el-icon-document" @click="handleReset">
+                重置
+            </el-button>
+        </el-form>
 		<el-table v-loading="listLoading" :data="tableData" element-loading-text="Loading" border fit highlight-current-row>
 			<el-table-column align="center" label="ID" width="95">
 				<template slot-scope="scope">
@@ -39,7 +62,7 @@
 				</template>
 			</el-table-column>
 		</el-table>
-		<pagination v-show="false" :total="total"  :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
+		<pagination  :total="total"  :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
 		<dialogExample :dialog-visible="showDialog" @dialog-cancel="showDialog=false" :copyModel="copyModel"></dialogExample>
 	</div>
 </template>
@@ -56,6 +79,12 @@ export default {
 	},
 	data() {
 		return {
+			form:{
+                status:"",
+                userName:"",
+				age:"",
+				date:[new Date(2020, 0, 1, 8, 0), new Date()]
+            },
 			copyModel:{},
 			showDialog:false,
 			total: 0, // 审计列表总数
@@ -71,6 +100,12 @@ export default {
 		this.fetchData();
 	},
 	methods: {
+		handleSearch(){
+
+		},
+		handleReset(){
+
+		},
 		showDialog_cb(row){
 			this.copyModel = row
 			this.showDialog = true

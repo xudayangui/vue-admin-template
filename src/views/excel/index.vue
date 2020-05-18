@@ -108,7 +108,6 @@ export default {
                     autoWidth: this.form.autoWidth,
                     bookType: this.form.bookType
                 })
-                console.error(type)
                 if(type=='all'){
                     this.downloadLoading = false
                 }else{
