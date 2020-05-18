@@ -196,7 +196,6 @@ export default {
 			getAbnormalList().then(response => {
 				this.orderList = response.data.orderList;
 				this.loginlist = response.data.loginlist;
-				this.total = this.tableData.length
 			});
 		},
 		formatLocalTime(val){
