@@ -116,7 +116,6 @@ export default {
 				this.listLoading = false;
 				this.tableData = response.data.list;
 				this.total = this.tableData.length
-				
 			});
 		},
 		deleteRow(index, rows){
