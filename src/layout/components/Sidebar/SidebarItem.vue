@@ -39,7 +39,6 @@ export default {
 		}
 	},
 	data() {
-		// To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
 		// 用渲染功能重构
 		this.onlyOneChild = null
 		return {}

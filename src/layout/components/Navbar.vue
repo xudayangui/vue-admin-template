@@ -20,10 +20,7 @@
 				</span>
 				<el-dropdown-menu slot="dropdown">
 					<el-dropdown-item>
-						<a href="https://gitee.com/xudayangui/vue-admin-template" target="view_window">码云</a>
-					</el-dropdown-item>
-					<el-dropdown-item>
-						<a href="https://github.com/xudayangui/vue-admin-template" target="view_window">github</a>
+						<a href="https://github.com/xudayangui/vue-admin-template" target="view_window">项目仓库</a>
 					</el-dropdown-item>
 					<el-dropdown-item divided @click.native="logout">退出</el-dropdown-item>
 				</el-dropdown-menu>
