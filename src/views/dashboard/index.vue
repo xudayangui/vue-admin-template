@@ -2,7 +2,7 @@
     <div>
         <el-row :gutter="20">
             <el-col :span="8">
-                <el-card shadow="hover" class="mgb20" style="height:252px;">
+                <el-card shadow="hover" class="mgb20">
                     <div class="user-info">
                         <img src="../../assets/logo/logo.png" class="user-avator" alt />
                         <div class="user-info-cont">
@@ -19,7 +19,7 @@
                         <span>北京</span>
                     </div>
                 </el-card>
-                <el-card shadow="hover" style="height:252px;">
+                <el-card shadow="hover" >
                     <div slot="header" class="clearfix">
                         <span>分布</span>
                     </div>
@@ -69,7 +69,7 @@
                         </el-card>
                     </el-col>
                 </el-row>
-                <el-card shadow="hover" style="height:403px;">
+                <el-card shadow="hover" style="height:388px;"  class="mgb20">
                     <div slot="header" class="clearfix">
                         <span>待办事项</span>
                         <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
@@ -89,11 +89,23 @@
                         </el-table-column>
                         <el-table-column width="60">
                             <template>
-                                <i class="el-icon-edit"></i>
-                                <i class="el-icon-delete"></i>
+                                <span class="btn"><i class="el-icon-edit"></i></span>
+								<span class="btn"><i class="el-icon-delete"></i></span>
                             </template>
                         </el-table-column>
                     </el-table>
+                </el-card>
+            </el-col>
+			<el-col :span="8">
+                <el-card shadow="hover" class="mgb20" style="height:600px;">
+                </el-card>
+            </el-col>
+			<el-col :span="8">
+                <el-card shadow="hover" class="mgb20" style="height:600px;">
+                </el-card>
+            </el-col>
+			<el-col :span="8">
+                <el-card shadow="hover" class="mgb20" style="height:600px;">
                 </el-card>
             </el-col>
         </el-row>
@@ -132,80 +144,7 @@ export default {
                     title: '今天要写100行代码加几个bug吧',
                     status: true
                 }
-            ],
-            data: [
-                {
-                    name: '2018/09/04',
-                    value: 1083
-                },
-                {
-                    name: '2018/09/05',
-                    value: 941
-                },
-                {
-                    name: '2018/09/06',
-                    value: 1139
-                },
-                {
-                    name: '2018/09/07',
-                    value: 816
-                },
-                {
-                    name: '2018/09/08',
-                    value: 327
-                },
-                {
-                    name: '2018/09/09',
-                    value: 228
-                },
-                {
-                    name: '2018/09/10',
-                    value: 1065
-                }
-            ],
-            options: {
-                type: 'bar',
-                title: {
-                    text: '最近一周各品类销售图'
-                },
-                xRorate: 25,
-                labels: ['周一', '周二', '周三', '周四', '周五'],
-                datasets: [
-                    {
-                        label: '家电',
-                        data: [234, 278, 270, 190, 230]
-                    },
-                    {
-                        label: '百货',
-                        data: [164, 178, 190, 135, 160]
-                    },
-                    {
-                        label: '食品',
-                        data: [144, 198, 150, 235, 120]
-                    }
-                ]
-            },
-            options2: {
-                type: 'line',
-                title: {
-                    text: '最近几个月各品类销售趋势图'
-                },
-                labels: ['6月', '7月', '8月', '9月', '10月'],
-                datasets: [
-                    {
-                        label: '家电',
-                        data: [234, 278, 270, 190, 230]
-                    },
-                    {
-                        label: '百货',
-                        data: [164, 178, 150, 135, 160]
-                    },
-                    {
-                        label: '食品',
-                        data: [74, 118, 200, 235, 90]
-                    }
-                ]
-            }
+            ]
         };
     },
     computed: {
@@ -226,6 +165,9 @@ export default {
 
 
 <style scoped>
+.btn {
+	cursor: pointer;
+}
 .el-row {
     margin-bottom: 20px;
 }
@@ -309,9 +251,5 @@ export default {
 .todo-item-del {
     text-decoration: line-through;
     color: #999;
-}
-.schart {
-    width: 100%;
-    height: 300px;
 }
 </style>
