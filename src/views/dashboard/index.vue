@@ -17,7 +17,7 @@
 					<el-col :span="4">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-1">
-                                <i class="el-icon-user-solid grid-con-icon"></i>
+                                <i class="el-icon-shopping-cart-2 grid-con-icon"></i>
                                 <div class="grid-cont-right">
                                     <div class="grid-num">1234</div>
                                     <div>用户下单量</div>
@@ -27,8 +27,8 @@
                     </el-col>
                     <el-col :span="4">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
-                            <div class="grid-content grid-con-1">
-                                <i class="el-icon-user-solid grid-con-icon"></i>
+                            <div class="grid-content grid-con-2">
+                                <i class="el-icon-check grid-con-icon"></i>
                                 <div class="grid-cont-right">
                                     <div class="grid-num">1234</div>
                                     <div>下单成功量</div>
@@ -38,7 +38,7 @@
                     </el-col>
                     <el-col :span="4">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
-                            <div class="grid-content grid-con-3">
+                            <div class="grid-content grid-con-2">
                                 <i class="el-icon-s-goods grid-con-icon"></i>
                                 <div class="grid-cont-right">
                                     <div class="grid-num">2450</div>
@@ -50,17 +50,17 @@
 					<el-col :span="4">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-3">
-                                <i class="el-icon-s-goods grid-con-icon"></i>
+                                <i class="el-icon-warning grid-con-icon"></i>
                                 <div class="grid-cont-right">
                                     <div class="grid-num">2450</div>
-                                    <div>下单成功金额</div>
+                                    <div>异常订单</div>
                                 </div>
                             </div>
                         </el-card>
                     </el-col>
 					<el-col :span="4">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
-                            <div class="grid-content grid-con-2">
+                            <div class="grid-content grid-con-4" >
                                 <i class="el-icon-message-solid grid-con-icon"></i>
                                 <div class="grid-cont-right">
                                     <div class="grid-num">321</div>
@@ -78,24 +78,20 @@
 							<div slot="header" class="clearfix">
 								<span>异常订单</span>
 							</div>
-							<el-table  :data="todoList" style="width:100%;" height="400">
+							<el-table  :data="orderList" style="width:100%;" height="400">
 								<el-table-column label="下单时间">
-									<template slot-scope="scope" >
-										2020/05/02
+									<template slot-scope="scope">
+										{{scope.row.datetime}}
 									</template>
 								</el-table-column>
 								<el-table-column label="下单数量">
 									<template slot-scope="scope">
-										<div class="todo-item" :class="{'todo-item-del': scope.row.status}">
-											{{scope.row.title}}
-										</div>
+										{{scope.row.order}}
 									</template>
 								</el-table-column>
 								<el-table-column label="下单金额">
 									<template slot-scope="scope">
-										<div class="todo-item" :class="{'todo-item-del': scope.row.status}">
-											{{scope.row.title}}
-										</div>
+										{{scope.row.money}}
 									</template>
 								</el-table-column>
 							</el-table>
@@ -106,24 +102,20 @@
 							<div slot="header" class="clearfix">
 								<span>异常登录</span>
 							</div>
-							<el-table :data="todoList" style="width:100%;" height="400">
+							<el-table :data="loginlist" style="width:100%;" height="400">
 								<el-table-column label="登录时间">
 									<template slot-scope="scope">
-										2020/05/02
+										{{scope.row.datetime}}
 									</template>
 								</el-table-column>
 								<el-table-column label="登录地点">
 									<template slot-scope="scope">
-										<div class="todo-item" :class="{'todo-item-del': scope.row.status}">
-											{{scope.row.title}}
-										</div>
+										{{scope.row.city}}
 									</template>
 								</el-table-column>
 								<el-table-column label="登录IP">
 									<template slot-scope="scope">
-										<div class="todo-item" :class="{'todo-item-del': scope.row.status}">
-											{{scope.row.title}}
-										</div>
+										{{scope.row.ip}}
 									</template>
 								</el-table-column>
 							</el-table>
@@ -153,6 +145,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { formatTime } from '@/utils'
+import { getAbnormalList } from "@/api/table";
 export default {
     name: 'Dashboard',
     data() {
@@ -161,6 +154,8 @@ export default {
 			offsetY: 180
 		}
         return {
+			orderList:[],
+			loginlist:[],
 			chartData: {
 				columns: ['日期', '访问用户', '下单用户', '下单率'],
 				rows: [
@@ -182,33 +177,7 @@ export default {
 					{ '日期': '1/5', '访问用户': 3792 },
 					{ '日期': '1/6', '访问用户': 4593 }
 				]
-            },
-            todoList: [
-                {
-                    title: '今天要修复100个bug',
-                    status: false
-                },
-                {
-                    title: '今天要修复100个bug',
-                    status: false
-                },
-                {
-                    title: '今天要写100行代码加几个bug吧',
-                    status: false
-                },
-                {
-                    title: '今天要修复100个bug',
-                    status: false
-                },
-                {
-                    title: '今天要修复100个bug',
-                    status: true
-                },
-                {
-                    title: '今天要写100行代码加几个bug吧',
-                    status: true
-                }
-            ]
+            }
         };
     },
     computed: {
@@ -218,8 +187,18 @@ export default {
         role() {
             return this.name === 'Admin' ? '超级管理员' : '普通用户';
         }
-    },
+	},
+	created() {
+		this.fetchData();
+	},
     methods: {
+		fetchData() {
+			getAbnormalList().then(response => {
+				this.orderList = response.data.orderList;
+				this.loginlist = response.data.loginlist;
+				this.total = this.tableData.length
+			});
+		},
 		formatLocalTime(val){
 			return formatTime(val)
 		}
@@ -271,13 +250,20 @@ export default {
     background: rgb(100, 213, 114);
 }
 .grid-con-2 .grid-num {
-    color: rgb(45, 140, 240);
+    color: rgb(100, 213, 114);
 }
+
 .grid-con-3 .grid-con-icon {
-    background: rgb(242, 94, 67);
+    background: #E6A23C
 }
 .grid-con-3 .grid-num {
-    color: rgb(242, 94, 67);
+    color: #E6A23C
+}
+.grid-con-4 .grid-con-icon {
+    background: #999
+}
+.grid-con-4 .grid-num {
+    color: #999
 }
 .user-info {
     display: flex;
