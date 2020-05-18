@@ -98,14 +98,17 @@
             </el-col>
 			<el-col :span="8">
                 <el-card shadow="hover" class="mgb20" style="height:600px;">
+					<ve-line :data="chartData" height="400px" style="margin-top:100px;"></ve-line>
                 </el-card>
             </el-col>
 			<el-col :span="8">
                 <el-card shadow="hover" class="mgb20" style="height:600px;">
+					<ve-histogram :data="chartData" height="400px" style="margin-top:100px;"></ve-histogram>
                 </el-card>
             </el-col>
 			<el-col :span="8">
                 <el-card shadow="hover" class="mgb20" style="height:600px;">
+					<ve-pie :data="pieData" height="400px" :settings="chartSettings" style="margin-top:100px;"></ve-pie>
                 </el-card>
             </el-col>
         </el-row>
@@ -118,7 +121,33 @@ import { formatTime } from '@/utils'
 export default {
     name: 'Dashboard',
     data() {
+		this.chartSettings = {
+			radius: 130,
+			offsetY: 180
+		}
         return {
+			chartData: {
+				columns: ['日期', '访问用户', '下单用户', '下单率'],
+				rows: [
+					{ 日期: '1/1', 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
+					{ 日期: '1/2', 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
+					{ 日期: '1/3', 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
+					{ 日期: '1/4', 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
+					{ 日期: '1/5', 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
+					{ 日期: '1/6', 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 }
+				]
+			},
+			pieData: {
+				columns: ['日期', '访问用户'],
+				rows: [
+					{ '日期': '1/1', '访问用户': 1393 },
+					{ '日期': '1/2', '访问用户': 3530 },
+					{ '日期': '1/3', '访问用户': 2923 },
+					{ '日期': '1/4', '访问用户': 1723 },
+					{ '日期': '1/5', '访问用户': 3792 },
+					{ '日期': '1/6', '访问用户': 4593 }
+				]
+            },
             todoList: [
                 {
                     title: '今天要修复100个bug',
