@@ -1,5 +1,6 @@
 <template>
-	<div class="login-container">
+
+	<div class="login-container" >
 		<el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 			<div class="title-container">
 				<h3 class="title">后台管理</h3>
@@ -150,7 +151,7 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
+$bg:#3a3f51;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 
@@ -164,7 +165,7 @@ $light_gray:#eee;
 		position: relative;
 		width: 520px;
 		max-width: 100%;
-		padding: 180px 35px 0;
+		padding: 280px 35px 0;
 		margin: 0 auto;
 		overflow: hidden;
 	}
