@@ -1,27 +1,31 @@
 <template>
 	<div class="app-container">
-		<el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
+		<el-form ref="form" :inline="true" class="demo-form-inline" :model="form" style="margin-bottom:10px;">
              <el-form-item label="用户名">
-                <el-input v-model="form.userName" placeholder="用户名" style="width:200px;" />
+                <el-input size="small" v-model="form.userName" placeholder="用户名" style="width:100px;" />
             </el-form-item>
 			 <el-form-item label="年龄" >
-                <el-input v-model="form.age" placeholder="年龄" style="width:200px;" />
+                <el-input size="small" v-model="form.age" placeholder="年龄" style="width:100px;"/>
             </el-form-item>
-             <el-form-item label="状态" placeholder="请选择">
-				<el-select v-model="form.status" style="width:120px;">
+            <el-form-item label="状态" placeholder="请选择">
+				<el-select size="small" v-model="form.status" style="width:100px;">
 					<el-option label="已录入" value="1"/>
 					<el-option label="未录入" value="0"/>
 				</el-select>
             </el-form-item>
             <el-form-item label="时间">
-				<el-date-picker v-model="form.date" type="datetimerange" align="right" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="['08:00:00', '08:00:00']"></el-date-picker>
+				<el-date-picker size="small" v-model="form.date" type="datetimerange" align="right" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="['08:00:00', '08:00:00']"></el-date-picker>
             </el-form-item>
-            <el-button  style="margin:0 0 20px 20px;" type="primary" icon="el-icon-search" @click="handleSearch">
+			<el-form-item label="">
+				<el-button size="small"  type="primary" icon="el-icon-search" @click="handleSearch">
                 搜索
-            </el-button>
-            <el-button  style="margin:0 0 20px 20px;" icon="el-icon-document" @click="handleReset">
+            	</el-button>
+            </el-form-item>
+			 <el-form-item label="">
+				<el-button  size="small"  icon="el-icon-document" @click="handleReset">
                 重置
-            </el-button>
+            	</el-button>
+            </el-form-item>
         </el-form>
 		<el-table v-loading="listLoading" :data="tableData" element-loading-text="Loading" border fit highlight-current-row>
 			<el-table-column align="center" label="ID" width="95">

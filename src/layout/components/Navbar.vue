@@ -16,7 +16,6 @@
 			<el-dropdown trigger="click">
 				<span class="el-dropdown-link">
 					{{name}}
-					<i class="el-icon-arrow-down el-icon--right"></i>
 				</span>
 				<el-dropdown-menu slot="dropdown">
 					<el-dropdown-item>
@@ -169,7 +168,7 @@ export default {
 		float: right;
 		height: 100%;
 		line-height: 50px;
-		margin-right: 30px;
+		margin-right: 10px;
 
 		&:focus {
 			outline: none;

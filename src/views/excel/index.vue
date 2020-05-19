@@ -1,31 +1,32 @@
 <template>
 	<div class="app-container">
-        <el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
+        <el-form ref="form" :inline="true" class="demo-form-inline" style="margin-bottom:10px;" :model="form">
              <el-form-item label="文件名称">
-                <el-input v-model="form.filename" placeholder="文件名称" style="width:200px;" prefix-icon="el-icon-document" />
+                <el-input size="small" v-model="form.filename" placeholder="文件名称" style="width:200px;" prefix-icon="el-icon-document" />
             </el-form-item>
              <el-form-item label="单元格自动宽度">
-                <el-radio-group v-model="form.autoWidth">
+                <el-radio-group size="small" v-model="form.autoWidth">
                     <el-radio :label="true">是</el-radio>
                     <el-radio :label="false">否</el-radio>
                 </el-radio-group>
             </el-form-item>
             <el-form-item label="导出类型">
-                <el-select v-model="form.bookType" style="width:120px;">
+                <el-select size="small" v-model="form.bookType" style="width:100px;">
                     <el-option label="xlsx" value="xlsx"/>
                     <el-option label="csv" value="csv"/>
                     <el-option label="txt" value="txt"/>
                 </el-select>
             </el-form-item>
-            <el-button :loading="downloadLoading" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleDownload">
-                导出全部
-            </el-button>
-            <el-button :loading="downloadSelectLoading" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleSelectionDownload">
-                导出选中
-            </el-button>
-            <!-- <el-button :loading="importExcelLoading" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleImportExcel">
-                导入
-            </el-button> -->
+            <el-form-item label="">
+                <el-button size="small" :loading="downloadLoading"  type="primary" icon="el-icon-document" @click="handleDownload">
+                    导出全部
+                </el-button>
+            </el-form-item>
+            <el-form-item label="">
+                <el-button size="small" :loading="downloadSelectLoading"  type="success" icon="el-icon-document-checked" @click="handleSelectionDownload">
+                    导出选中
+                </el-button>
+            </el-form-item>
         </el-form>
 		<el-table ref="multipleTable" @selection-change="handleSelectionChange" v-loading="listLoading" :data="tableData" element-loading-text="Loading" border fit highlight-current-row>
 			<el-table-column type="selection" align="center" />

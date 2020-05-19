@@ -123,21 +123,21 @@
                     </el-col>
                 </el-row>
 			</el-col>
-			<el-col :span="8">
-                <el-card shadow="hover" class="mgb20" style="height:600px;">
+			<el-col :span="12">
+                <el-card shadow="hover" class="mgb20" style="min-height:400px;">
 					<ve-line :data="chartData" height="400px" style="margin-top:100px;"></ve-line>
                 </el-card>
             </el-col>
-			<el-col :span="8">
-                <el-card shadow="hover" class="mgb20" style="height:600px;">
+			<el-col :span="12">
+                <el-card shadow="hover" class="mgb20" style="min-height:400px;">
 					<ve-histogram :data="chartData" height="400px" style="margin-top:100px;"></ve-histogram>
                 </el-card>
             </el-col>
-			<el-col :span="8">
-                <el-card shadow="hover" class="mgb20" style="height:600px;">
+			<!-- <el-col :span="8">
+                <el-card shadow="hover" class="mgb20" style="min-height:400px;">
 					<ve-pie :data="pieData" height="400px" :settings="chartSettings" style="margin-top:100px;"></ve-pie>
                 </el-card>
-            </el-col>
+            </el-col> -->
         </el-row>
     </div>
 </template>
@@ -208,7 +208,7 @@ export default {
 
 <style scoped>
 .el-col {
-    border-radius: 4px;
+    border-radius: 5px;
   }
 .btn {
 	cursor: pointer;
@@ -217,6 +217,7 @@ export default {
     margin-bottom: 20px;
 }
 .grid-content {
+    cursor: pointer;
     display: flex;
     align-items: center;
     height: 100px;
@@ -228,38 +229,36 @@ export default {
     color: #999;
 }
 .grid-num {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: bold;
 }
 .grid-con-icon {
-    font-size: 50px;
-    width: 100px;
-    height: 100px;
+    font-size: 40px;
     text-align: center;
-    line-height: 100px;
     color: #fff;
+    margin-left: 10px;
 }
 .grid-con-1 .grid-con-icon {
-    background: rgb(45, 140, 240);
+    color: rgb(45, 140, 240);
 }
 .grid-con-1 .grid-num {
     color: rgb(45, 140, 240);
 }
 .grid-con-2 .grid-con-icon {
-    background: rgb(100, 213, 114);
+    color: rgb(100, 213, 114);
 }
 .grid-con-2 .grid-num {
     color: rgb(100, 213, 114);
 }
 
 .grid-con-3 .grid-con-icon {
-    background: #E6A23C
+    color: #E6A23C
 }
 .grid-con-3 .grid-num {
     color: #E6A23C
 }
 .grid-con-4 .grid-con-icon {
-    background: #999
+    color: #999
 }
 .grid-con-4 .grid-num {
     color: #999
