@@ -2,7 +2,7 @@
 	<div class="app-container">
         <div>
             <quill-editor ref="myTextEditor" v-model="content" :options="editorOption"></quill-editor>
-            <el-button class="editor-btn" type="primary" @click="submit">提交</el-button>
+            <el-button class="editor-btn" type="primary" size="small" @click="submit">提交</el-button>
         </div>
 	</div>
 </template>

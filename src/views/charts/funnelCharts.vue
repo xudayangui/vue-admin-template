@@ -1,5 +1,5 @@
 <template>
-  	<ve-funnel :data="chartData" height="800px" style="margin-top:150px;"></ve-funnel>
+	<ve-funnel :data="chartData" height="600px" style="margin-top:40px;"></ve-funnel>
 </template>
 
 <script>

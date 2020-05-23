@@ -1,5 +1,5 @@
 <template>
-    <ve-sankey :data="chartData" :settings="chartSettings" height="800px" style="margin-top:150px;"></ve-sankey>
+    <ve-sankey :data="chartData" :settings="chartSettings" height="600px" style="margin-top:40px;"></ve-sankey>
 </template>
 
 <script>

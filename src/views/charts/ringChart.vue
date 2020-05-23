@@ -1,13 +1,13 @@
 <template>
-  <ve-ring :data="chartData"  height="800px" :settings="chartSettings" style="margin-top:150px;"></ve-ring>
+  <ve-ring :data="chartData"  height="600px" :settings="chartSettings" style="margin-top:40px;"></ve-ring>
 </template>
 
 <script>
 	export default {
 		data() {
 			this.chartSettings = {
-				radius: [300,250],
-				offsetY: 400
+				radius: [200,150],
+				offsetY: 300
 			}
 			return {
 				chartData: {

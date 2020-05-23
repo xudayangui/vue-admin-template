@@ -1,5 +1,5 @@
 <template>
-    <ve-radar :data="chartData" height="800px" style="margin-top:150px;"></ve-radar>
+    <ve-radar :data="chartData" height="600px" style="margin-top:40px;"></ve-radar>
 </template>
 
 <script>

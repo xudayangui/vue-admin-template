@@ -2,7 +2,7 @@
 	<div class="app-container">
         <div>
             <mavon-editor v-model="content" ref="md" @imgAdd="$imgAdd" @change="change" style="min-height: 600px"/>
-            <el-button class="editor-btn" type="primary" @click="submit">提交</el-button>
+            <el-button class="editor-btn" size="small" type="primary" @click="submit">提交</el-button>
         </div>
 	</div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  	<ve-candle :data="chartData" height="800px" style="margin-top:150px;"></ve-candle>
+  	<ve-candle :data="chartData" height="600px" style="margin-top:40px;"></ve-candle>
 </template>
 
 <script>

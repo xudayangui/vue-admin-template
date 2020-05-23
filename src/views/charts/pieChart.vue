@@ -1,13 +1,13 @@
 <template>
-    <ve-pie :data="chartData" height="800px" :settings="chartSettings" style="margin-top:150px;"></ve-pie>
+    <ve-pie :data="chartData" height="600px" :settings="chartSettings" style="margin-top:40px;"></ve-pie>
 </template>
 
 <script>
     export default {
         data() {
             this.chartSettings = {
-                radius: 300,
-                offsetY: 400
+                radius: 200,
+                offsetY: 300
             }
             return {
                 chartData: {

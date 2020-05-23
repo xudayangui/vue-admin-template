@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ve-line :data="chartData" height="800px" style="margin-top:150px;"></ve-line>
+        <ve-line :data="chartData" height="600px" style="margin-top:40px;"></ve-line>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<ve-histogram :data="chartData" height="800px" style="margin-top:150px;"></ve-histogram>
+		<ve-histogram :data="chartData" height="600px" style="margin-top:40px;"></ve-histogram>
 	</div>
 </template>
 
