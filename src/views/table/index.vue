@@ -136,3 +136,8 @@ export default {
 	}
 };
 </script>
+<style scoped>
+.el-button {
+    padding: 8px 20px;
+}
+</style>

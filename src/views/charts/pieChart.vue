@@ -1,5 +1,5 @@
 <template>
-    <ve-pie :data="chartData" height="600px" :settings="chartSettings" style="margin-top:40px;"></ve-pie>
+    <ve-pie :data="chartData" height="550px" :settings="chartSettings" style="margin-top:30px;"></ve-pie>
 </template>
 
 <script>

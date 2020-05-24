@@ -1,5 +1,5 @@
 <template>
-    <ve-heatmap :data="chartData" height="600px" style="margin-top:40px;"></ve-heatmap>
+    <ve-heatmap :data="chartData" height="550px" style="margin-top:30px;"></ve-heatmap>
 </template>
 
 <script>

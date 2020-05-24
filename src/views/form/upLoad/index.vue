@@ -1,34 +1,36 @@
 <template>
     <div style="margin: 30px;">
-        <!-- 上传图片 -->
-        <div class="fl">
-            <el-upload action="/" :show-file-list="false" :before-upload="beforeAvatarUpload" :http-request="uploadFile">
-                <img v-if="samplePicture" :src="samplePicture">
-                <el-button v-else class="pad-30 bor-1">
-                    <i v-if="!samplePicture" class="el-icon-plus" style="font-size: 30px;"></i>
-                    <i v-if="samplePicture" class="el-icon-loading"></i>
-                    <p class="mar-t-5">上传 图片，大小不超过2M</p>
-                </el-button>
-            </el-upload>
-        </div>
-        <!-- 上传excel -->
-        <div class="fl mar-l-20">
-            <el-upload action="/" :show-file-list="false" :before-upload="beforeBatchInExcel" :http-request="batchInFileExcel">
-                <el-button :loading="importLoaing" class="pad-30">
-                    <i class="el-icon-plus" style="font-size: 30px;"></i>
-                    <p class="mar-t-5">上传excel，大小不超过2M</p>
-                </el-button>
-            </el-upload>
-        </div>
-        <!-- 上传pdf -->
-        <div class="fl mar-l-20" style="width: 350px;">
-            <el-upload :show-file-list="false" :before-upload="beforeAvatarUploadPdf" :http-request="uploadFilePdf" :limit="1" action="/" multiple>
-                <el-button class="pad-30">
-                    <i class="el-icon-plus" style="font-size: 30px;"></i>
-                    <p class="mar-t-5">上传 pdf、word，大小不超过10M</p>
-                </el-button>
-            </el-upload>
-        </div>
+        <el-row :gutter="20" class="mgl20 mgr20">
+             <!-- 上传图片 -->
+			<el-col :span="8" class="mgt20">
+                <el-upload action="/" :show-file-list="false" :before-upload="beforeAvatarUpload" :http-request="uploadFile">
+                    <img v-if="samplePicture" :src="samplePicture">
+                    <el-button v-else class="pad-30 bor-1">
+                        <i v-if="!samplePicture" class="el-icon-plus" style="font-size: 30px;"></i>
+                        <i v-if="samplePicture" class="el-icon-loading"></i>
+                        <p class="mar-t-5">上传 图片，大小不超过2M</p>
+                    </el-button>
+                </el-upload>
+            </el-col>
+            <!-- 上传excel -->
+			<el-col :span="8" class="mgt20">
+                <el-upload action="/" :show-file-list="false" :before-upload="beforeBatchInExcel" :http-request="batchInFileExcel">
+                    <el-button :loading="importLoaing" class="pad-30">
+                        <i class="el-icon-plus" style="font-size: 30px;"></i>
+                        <p class="mar-t-5">上传excel，大小不超过2M</p>
+                    </el-button>
+                </el-upload>
+            </el-col>
+            <!-- 上传pdf -->
+			<el-col :span="8"  class="mgt20">
+                <el-upload :show-file-list="false" :before-upload="beforeAvatarUploadPdf" :http-request="uploadFilePdf" :limit="1" action="/" multiple>
+                    <el-button class="pad-30">
+                        <i class="el-icon-plus" style="font-size: 30px;"></i>
+                        <p class="mar-t-5">上传 pdf、word，大小不超过10M</p>
+                    </el-button>
+                </el-upload>
+            </el-col>
+        </el-row>
     </div>
 </template>
 <script>
@@ -56,7 +58,7 @@
                 };
                 //请求接口  可在api.js中自定义
                 this.uploadFile(params, config).then(res => {
-                    
+
                 }).catch(err => {
                     console.log(err);
                 });
@@ -74,7 +76,7 @@
                 }
                 return isJPG && isLt2M;
             },
-            
+
             //上传excel
             batchInFileExcel(file) {
                 return this.$message.error("请配置接口!");
@@ -114,7 +116,7 @@
                 }
                 return isExcel && isLt2M;
             },
-            
+
             //上传pdf
             uploadFilePdf(file) {
                 return this.$message.error("请配置接口!");
@@ -130,9 +132,9 @@
                 }
                 this.uploadFile(params,config).then(res => {
                     if(res.data.retcode === 200){
-                        
+
                     }else{
-                        
+
                     }
                 }).catch(err => {
                     console.log(err)
@@ -161,9 +163,6 @@
 	}
 </script>
 <style lang="scss" scoped>
-.fl {
-  float: left;
-}
 .pad-30 {
   padding: 30px;
 }
@@ -175,5 +174,21 @@
 }
 .mar-l-20 {
   margin-left: 20px;
+}
+.mgb20 {
+    margin-bottom: 20px;
+}
+.mgt20 {
+    text-align: center;
+    margin-top: 20px;
+}
+.mgt10 {
+    margin-top: 10px;
+}
+.mgl20 {
+    margin-left: 20px !important;
+}
+.mgr20 {
+    margin-right: 20px !important;
 }
 </style>

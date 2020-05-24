@@ -52,7 +52,7 @@
 			</el-table-column>
 			<el-table-column class-name="status-col" label="状态" width="110" align="center">
 				<template slot-scope="scope">
-					<el-tag :type="scope.row.status?'success':'danger'" effect="dark">{{scope.row.status?'已录入':'未录入'}}</el-tag>
+					<el-tag :type="scope.row.status?'success':'danger'" size="mini" effect="dark">{{scope.row.status?'已录入':'未录入'}}</el-tag>
 				</template>
 			</el-table-column>
 			<el-table-column align="center" prop="time" label="创建时间" width="200">

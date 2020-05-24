@@ -1,5 +1,5 @@
 <template>
-  <ve-gauge :data="chartData" height="600px" style="margin-top:40px;"></ve-gauge>
+  <ve-gauge :data="chartData" height="550px" style="margin-top:30px;"></ve-gauge>
 </template>
 
 <script>
