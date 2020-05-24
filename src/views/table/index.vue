@@ -1,6 +1,6 @@
 <template>
 	<div class="app-container">
-		<el-form ref="form" :inline="true" class="demo-form-inline" :model="form" style="margin-bottom:10px;">
+		<el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
              <el-form-item label="用户名" prop="userName">
                 <el-input size="small" v-model="form.userName" placeholder="用户名" style="width:100px;" />
             </el-form-item>
@@ -12,9 +12,6 @@
 					<el-option label="已录入" value="1"/>
 					<el-option label="未录入" value="0"/>
 				</el-select>
-            </el-form-item>
-            <el-form-item label="时间" prop="date">
-				<el-date-picker size="small" v-model="form.date" type="datetimerange" align="right" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="['08:00:00', '08:00:00']"></el-date-picker>
             </el-form-item>
 			<el-form-item label="">
 				<el-button size="small"  type="primary" icon="el-icon-search" @click="handleSearch">
@@ -87,7 +84,6 @@ export default {
                 status:"",
                 userName:"",
 				age:"",
-				date:[new Date(2020, 0, 1, 8, 0), new Date()]
             },
 			copyModel:{},
 			showDialog:false,

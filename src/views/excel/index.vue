@@ -1,6 +1,6 @@
 <template>
 	<div class="app-container">
-        <el-form ref="form" :inline="true" class="demo-form-inline" style="margin-bottom:10px;" :model="form">
+        <el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
              <el-form-item label="文件名称">
                 <el-input size="small" v-model="form.filename" placeholder="文件名称" style="width:200px;" prefix-icon="el-icon-document" />
             </el-form-item>
@@ -134,7 +134,7 @@ export default {
             const Header = ['编号', '用户名', '年龄', '住址', '状态','创建时间']
             const filterVal = ['id', 'name', 'age', 'city', 'status', 'time']
             this.exportExcel('all',Header,filterVal,this.tableData)
-           
+
         },
         //导出选中
         handleSelectionDownload(){

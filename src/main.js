@@ -15,6 +15,7 @@ import router from './router' //引进路由
 
 import '@/permission' // permission control
 
+
 Vue.use(ElementUI)
 Vue.use(VCharts)
 Vue.config.productionTip = false

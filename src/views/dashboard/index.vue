@@ -1,10 +1,10 @@
 <template>
     <div>
         <el-row :gutter="20" class="mgl20 mgr20">
-            <el-col :span="24">
-                <el-row :gutter="20" class="mgb20 mgt20">
-                    <el-col :span="4">
-                        <el-card shadow="hover" :body-style="{padding: '0px'}">
+            <el-col :span="24" class="mgt20">
+                <el-row :gutter="20">
+                    <el-col :span="screenWidth>1200?4:8">
+                        <el-card shadow="hover"  :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-1">
                                 <i class="el-icon-user-solid grid-con-icon"></i>
                                 <div class="grid-cont-right">
@@ -14,7 +14,7 @@
                             </div>
                         </el-card>
                     </el-col>
-					<el-col :span="4">
+					<el-col :span="screenWidth>1200?4:8">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-1">
                                 <i class="el-icon-shopping-cart-2 grid-con-icon"></i>
@@ -25,7 +25,7 @@
                             </div>
                         </el-card>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="screenWidth>1200?4:8">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-2">
                                 <i class="el-icon-check grid-con-icon"></i>
@@ -36,7 +36,7 @@
                             </div>
                         </el-card>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="screenWidth>1200?4:8" :class="screenWidth>1200?'':'mgt10'">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-2">
                                 <i class="el-icon-s-goods grid-con-icon"></i>
@@ -47,7 +47,7 @@
                             </div>
                         </el-card>
                     </el-col>
-					<el-col :span="4">
+					<el-col :span="screenWidth>1200?4:8" :class="screenWidth>1200?'':'mgt10'">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-3">
                                 <i class="el-icon-warning grid-con-icon"></i>
@@ -58,7 +58,7 @@
                             </div>
                         </el-card>
                     </el-col>
-					<el-col :span="4">
+					<el-col :span="screenWidth>1200?4:8" :class="screenWidth>1200?'':'mgt10'">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-4" >
                                 <i class="el-icon-message-solid grid-con-icon"></i>
@@ -71,15 +71,15 @@
                     </el-col>
                 </el-row>
             </el-col>
-			<el-col :span="24">
-				<el-row :gutter="20" class="mgb20 mgt20">
+			<el-col :span="24" class="mgt20">
+				<el-row :gutter="20" >
                     <el-col :span="12">
-                        <el-card shadow="hover" style="height:450px;"  class="mgb20">
+                        <el-card shadow="hover" style="height:450px;" >
 							<div slot="header" class="clearfix">
 								<span>异常订单</span>
 							</div>
-							<el-table  :data="orderList" style="width:100%;" height="400">
-								<el-table-column label="下单时间">
+							<el-table  :data="orderList" style="width:100%;" height="400" :size="screenWidth>1200?'':'mini'">
+								<el-table-column label="下单时间" min-width="130">
 									<template slot-scope="scope">
 										{{scope.row.datetime}}
 									</template>
@@ -98,43 +98,43 @@
 						</el-card>
                     </el-col>
 					<el-col :span="12">
-                        <el-card shadow="hover" style="height:450px; "  class="mgb20">
+                        <el-card shadow="hover" style="height:450px; ">
 							<div slot="header" class="clearfix">
 								<span>异常登录</span>
 							</div>
-							<el-table :data="loginlist" style="width:100%;" height="400">
-								<el-table-column label="登录时间">
+							<el-table :data="loginlist" style="width:100%;" height="400" :size="screenWidth>1200?'':'mini'">
+								<el-table-column label="登录时间" >
 									<template slot-scope="scope">
 										{{scope.row.datetime}}
 									</template>
 								</el-table-column>
-								<el-table-column label="登录地点">
+								<el-table-column label="登录地点" >
 									<template slot-scope="scope">
 										{{scope.row.city}}
 									</template>
 								</el-table-column>
-								<el-table-column label="登录IP">
+								<!-- <el-table-column label="登录IP" min-width="120px">
 									<template slot-scope="scope">
 										{{scope.row.ip}}
 									</template>
-								</el-table-column>
+								</el-table-column> -->
 							</el-table>
 						</el-card>
                     </el-col>
                 </el-row>
 			</el-col>
-			<el-col :span="12">
-                <el-card shadow="hover" class="mgb20" style="min-height:400px;">
+			<el-col :span="12" class="mgt20">
+                <el-card shadow="hover"  style="min-height:400px;">
 					<ve-line :data="chartData" height="400px" style="margin-top:100px;"></ve-line>
                 </el-card>
             </el-col>
-			<el-col :span="12">
-                <el-card shadow="hover" class="mgb20" style="min-height:400px;">
+			<el-col :span="12" class="mgt20">
+                <el-card shadow="hover"  style="min-height:400px;">
 					<ve-histogram :data="chartData" height="400px" style="margin-top:100px;"></ve-histogram>
                 </el-card>
             </el-col>
 			<!-- <el-col :span="8">
-                <el-card shadow="hover" class="mgb20" style="min-height:400px;">
+                <el-card shadow="hover"  style="min-height:400px;">
 					<ve-pie :data="pieData" height="400px" :settings="chartSettings" style="margin-top:100px;"></ve-pie>
                 </el-card>
             </el-col> -->
@@ -154,6 +154,7 @@ export default {
 			offsetY: 180
 		}
         return {
+            screenWidth: document.body.clientWidth,
 			orderList:[],
 			loginlist:[],
 			chartData: {
@@ -180,6 +181,22 @@ export default {
             }
         };
     },
+    watch :{
+       screenWidth(val){
+            // 为了避免频繁触发resize函数导致页面卡顿，使用定时器
+            if(!this.timer){
+                // 一旦监听到的screenWidth值改变，就将其重新赋给data里的screenWidth
+                this.screenWidth = val
+                this.timer = true
+                let that = this
+                setTimeout(function(){
+                    // 打印screenWidth变化的值
+                    console.log(that.screenWidth)
+                    that.timer = false
+                },400)
+            }
+        }
+    },
     computed: {
 		...mapGetters([
 			'name'
@@ -201,6 +218,15 @@ export default {
 		formatLocalTime(val){
 			return formatTime(val)
 		}
+    },
+    mounted () {
+        let that = this
+        window.onresize = () => {
+            return (() => {
+                window.screenWidth = document.body.clientWidth
+                that.screenWidth = window.screenWidth
+            })()
+        }
     }
 };
 </script>
@@ -213,9 +239,6 @@ export default {
 .btn {
 	cursor: pointer;
 }
-.el-row {
-    margin-bottom: 20px;
-}
 .grid-content {
     cursor: pointer;
     display: flex;
@@ -225,15 +248,15 @@ export default {
 .grid-cont-right {
     flex: 1;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     color: #999;
 }
 .grid-num {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
 }
 .grid-con-icon {
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
     color: #fff;
     margin-left: 10px;
@@ -298,6 +321,9 @@ export default {
 }
 .mgt20 {
     margin-top: 20px;
+}
+.mgt10 {
+    margin-top: 10px;
 }
 .mgl20 {
     margin-left: 20px !important;
