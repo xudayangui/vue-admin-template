@@ -62,13 +62,18 @@
 				</template>
 			</el-table-column>
 		</el-table>
+        <pagination  :total="total"  :page.sync="listQuery.page" :limit.sync="listQuery.pageSize" @pagination="fetchData" />
 	</div>
 </template>
 
 <script>
+import Pagination from '@/components/Pagination'
 import { getList } from "@/api/table";
 import { parseTime } from '@/utils'
 export default {
+    components: {
+		Pagination,
+	},
 	data() {
 		return {
             multipleSelection:[],
@@ -80,6 +85,11 @@ export default {
                 filename:"表格",
                 autoWidth:true
             },
+            total: 0, // 审计列表总数
+			listQuery: { // 获取审计列表传参集合
+				page: 1,
+				pageSize: 20,
+			},
 			tableData: [],
 			listLoading: true
 		};
@@ -90,9 +100,10 @@ export default {
 	methods: {
 		fetchData() {
 			this.listLoading = true;
-			getList().then(response => {
+			getList(this.listQuery).then(response => {
 				this.listLoading = false;
                 this.tableData = response.data.list;
+                this.total = response.data.count
 			});
         },
         handleSelectionChange(val) {
@@ -139,8 +150,6 @@ export default {
                 })
             }
         },
-        //导入
-
         formatJson(filterVal, jsonData) {
             return jsonData.map(i => filterVal.map(element => {
                 if (element === 'timestamp') {

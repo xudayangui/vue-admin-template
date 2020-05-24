@@ -1,19 +1,19 @@
 <template>
 	<div class="app-container">
 		<el-form ref="form" :inline="true" class="demo-form-inline" :model="form" style="margin-bottom:10px;">
-             <el-form-item label="用户名">
+             <el-form-item label="用户名" prop="userName">
                 <el-input size="small" v-model="form.userName" placeholder="用户名" style="width:100px;" />
             </el-form-item>
-			 <el-form-item label="年龄" >
+			 <el-form-item label="年龄" prop="age">
                 <el-input size="small" v-model="form.age" placeholder="年龄" style="width:100px;"/>
             </el-form-item>
-            <el-form-item label="状态" placeholder="请选择">
+            <el-form-item label="状态" placeholder="请选择" prop="status">
 				<el-select size="small" v-model="form.status" style="width:100px;">
 					<el-option label="已录入" value="1"/>
 					<el-option label="未录入" value="0"/>
 				</el-select>
             </el-form-item>
-            <el-form-item label="时间">
+            <el-form-item label="时间" prop="date">
 				<el-date-picker size="small" v-model="form.date" type="datetimerange" align="right" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="['08:00:00', '08:00:00']"></el-date-picker>
             </el-form-item>
 			<el-form-item label="">
@@ -22,7 +22,7 @@
             	</el-button>
             </el-form-item>
 			 <el-form-item label="">
-				<el-button  size="small"  icon="el-icon-document" @click="handleReset">
+				<el-button  size="small"  icon="el-icon-document" @click="handleReset('form')">
                 重置
             	</el-button>
             </el-form-item>
@@ -66,7 +66,7 @@
 				</template>
 			</el-table-column>
 		</el-table>
-		<pagination  :total="total"  :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
+		<pagination  :total="total"  :page.sync="listQuery.page" :limit.sync="listQuery.pageSize" @pagination="fetchData" />
 		<dialogExample :dialog-visible="showDialog" @dialog-cancel="showDialog=false" :copyModel="copyModel"></dialogExample>
 	</div>
 </template>
@@ -94,7 +94,7 @@ export default {
 			total: 0, // 审计列表总数
 			listQuery: { // 获取审计列表传参集合
 				page: 1,
-				limit: 20,
+				pageSize: 20,
 			},
 			tableData: [],
 			listLoading: true
@@ -105,10 +105,13 @@ export default {
 	},
 	methods: {
 		handleSearch(){
-
+			this.fetchData();
 		},
-		handleReset(){
-
+		handleReset(formName){
+			this.$refs[formName].resetFields();
+			this.listQuery.page=1
+			this.listQuery.pageSize=20
+			this.fetchData();
 		},
 		showDialog_cb(row){
 			this.copyModel = row
@@ -116,10 +119,10 @@ export default {
 		},
 		fetchData() {
 			this.listLoading = true;
-			getList().then(response => {
-				this.listLoading = false;
+			getList(this.listQuery).then(response => {
 				this.tableData = response.data.list;
-				this.total = this.tableData.length
+				this.total = response.data.count
+				this.listLoading = false;
 			});
 		},
 		deleteRow(index, rows){
