@@ -87,18 +87,18 @@
 
     .hideSidebar {
     	.sidebar-container {
-        	width: 64px !important;
+        	width: 54px !important;
       	}
       .main-container {
-        margin-left: 64px;
+        margin-left: 54px;
       }
 
       .submenu-title-noDropdown {
-        // padding: 0 !important;
+        padding: 0 !important;
         position: relative;
 
         .el-tooltip {
-          // padding: 0 !important;
+          padding: 0 !important;
 
           .svg-icon {
             margin-left: 20px;
@@ -110,7 +110,7 @@
         overflow: hidden;
 
         &>.el-submenu__title {
-          // padding: 0 !important;
+          padding: 0 !important;
 
           .svg-icon {
             margin-left: 20px;
@@ -174,6 +174,7 @@
   .el-menu--vertical {
     &>.el-menu {
       .svg-icon {
+        font-size: 16px;
         margin-right: 16px;
       }
     }
