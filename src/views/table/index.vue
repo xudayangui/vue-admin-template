@@ -146,4 +146,7 @@ export default {
 .el-form-item {
 	margin-bottom: 0;
 }
+.el-button--mini, .el-button--mini.is-round {
+    padding: 5px 20px;
+}
 </style>
