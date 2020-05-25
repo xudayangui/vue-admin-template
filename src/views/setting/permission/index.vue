@@ -19,8 +19,8 @@
 			</el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
-					<el-button type="text" @click="showDialog_cb(scope.row)">编辑</el-button>
-					<el-button type="text" v-if="scope.row.status!==0" @click="deleteRow(scope.$index, tableData)">删除</el-button>
+					<el-button type="primary" size="mini" @click="showDialog_cb(scope.row)">编辑</el-button>
+					<el-button type="danger" size="mini" v-if="scope.row.status!==0" @click="deleteRow(scope.$index, tableData)">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>

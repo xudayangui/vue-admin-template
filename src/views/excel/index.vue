@@ -1,8 +1,8 @@
 <template>
 	<div class="app-container">
         <el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
-             <el-form-item label="文件名称">
-                <el-input size="small" v-model="form.filename" placeholder="文件名称" style="width:200px;" prefix-icon="el-icon-document" />
+             <el-form-item label="">
+                <el-input size="small" v-model="form.filename" placeholder="名称" style="width:200px;" prefix-icon="el-icon-document" />
             </el-form-item>
              <el-form-item label="单元格自动宽度">
                 <el-radio-group size="small" v-model="form.autoWidth">
@@ -82,7 +82,7 @@ export default {
             importExcelLoading:false,
             form:{
                 bookType:"xlsx",
-                filename:"表格",
+                filename:"",
                 autoWidth:true
             },
             total: 0, // 审计列表总数
@@ -162,3 +162,11 @@ export default {
 	}
 };
 </script>
+<style scoped>
+.el-form {
+	margin-bottom: 10px;
+}
+.el-form-item {
+	margin-bottom: 0;
+}
+</style>

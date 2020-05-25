@@ -1,14 +1,14 @@
 <template>
 	<div class="app-container">
 		<el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
-             <el-form-item label="用户名" prop="userName">
+             <el-form-item label="" prop="userName">
                 <el-input size="small" v-model="form.userName" placeholder="用户名" style="width:100px;" />
             </el-form-item>
-			 <el-form-item label="年龄" prop="age">
+			 <el-form-item label="" prop="age">
                 <el-input size="small" v-model="form.age" placeholder="年龄" style="width:100px;"/>
             </el-form-item>
-            <el-form-item label="状态" placeholder="请选择" prop="status">
-				<el-select size="small" v-model="form.status" style="width:100px;">
+            <el-form-item label=""  prop="status">
+				<el-select size="small" v-model="form.status" style="width:100px;" placeholder="状态">
 					<el-option label="已录入" value="1"/>
 					<el-option label="未录入" value="0"/>
 				</el-select>
@@ -58,8 +58,8 @@
 			</el-table-column>
 			<el-table-column label="操作" class="btn">
 				<template slot-scope="scope">
-					<el-button type="text" size="mini" @click="showDialog_cb(scope.row)">编辑</el-button>
-					<el-button type="text" size="mini" v-if="scope.row.status" @click="deleteRow(scope.$index, tableData)">删除</el-button>
+					<el-button type="primary" size="mini" @click="showDialog_cb(scope.row)">编辑</el-button>
+					<el-button type="danger" size="mini" v-if="scope.row.status" @click="deleteRow(scope.$index, tableData)">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -81,7 +81,7 @@ export default {
 	data() {
 		return {
 			form:{
-                status:"",
+                status:null,
                 userName:"",
 				age:"",
             },
@@ -139,5 +139,11 @@ export default {
 <style scoped>
 .btn .el-button {
     padding-bottom: 0
+}
+.el-form {
+	margin-bottom: 10px;
+}
+.el-form-item {
+	margin-bottom: 0;
 }
 </style>
