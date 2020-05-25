@@ -1,6 +1,6 @@
 <template>
 	<div class="app-container">
-		<el-table v-loading="listLoading" :data="tableData" element-loading-text="Loading" border fit highlight-current-row>
+		<el-table v-loading="listLoading" :data="tableData" element-loading-text="加载中..." border fit highlight-current-row>
 			<el-table-column label="用户名">
 				<template slot-scope="scope">
 					{{ scope.row.name }}
@@ -67,7 +67,7 @@ export default {
 				this.listLoading = false;
 				this.tableData = response.data.list;
 				this.total = this.tableData.length
-				
+
 			});
 		},
 		deleteRow(index, rows){

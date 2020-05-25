@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-row :gutter="20" class="mgl20 mgr20">
+        <el-row :gutter="20" class="mgl20 mgr20" v-loading="listLoading" element-loading-text="加载中...">
             <el-col :span="24" class="mgt20">
                 <el-row :gutter="20">
                     <el-col :span="screenWidth>1200?4:8">
@@ -8,7 +8,7 @@
                             <div class="grid-content grid-con-1">
                                 <i class="el-icon-user-solid grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">1234</div>
+                                    <div class="grid-num">{{statistics.views}}</div>
                                     <div>用户访问量</div>
                                 </div>
                             </div>
@@ -19,7 +19,7 @@
                             <div class="grid-content grid-con-1">
                                 <i class="el-icon-shopping-cart-2 grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">1234</div>
+                                    <div class="grid-num">{{statistics.volumeOrder}}</div>
                                     <div>用户下单量</div>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                             <div class="grid-content grid-con-2">
                                 <i class="el-icon-check grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">1234</div>
+                                    <div class="grid-num">{{statistics.success}}</div>
                                     <div>下单成功量</div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                             <div class="grid-content grid-con-2">
                                 <i class="el-icon-s-goods grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">2450</div>
+                                    <div class="grid-num">{{statistics.money}}</div>
                                     <div>下单金额</div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             <div class="grid-content grid-con-3">
                                 <i class="el-icon-warning grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">2450</div>
+                                    <div class="grid-num">{{statistics.abnormal}}</div>
                                     <div>异常订单</div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                             <div class="grid-content grid-con-4" >
                                 <i class="el-icon-message-solid grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">321</div>
+                                    <div class="grid-num">{{statistics.message}}</div>
                                     <div>系统消息</div>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
 								<span>异常登录</span>
 							</div>
 							<el-table :data="loginlist" style="width:100%;" height="400" :size="screenWidth>1200?'':'mini'">
-								<el-table-column label="登录时间" >
+								<el-table-column label="登录时间" min-width="120px">
 									<template slot-scope="scope">
 										{{scope.row.datetime}}
 									</template>
@@ -113,11 +113,11 @@
 										{{scope.row.city}}
 									</template>
 								</el-table-column>
-								<!-- <el-table-column label="登录IP" min-width="120px">
+								<el-table-column label="登录IP" >
 									<template slot-scope="scope">
 										{{scope.row.ip}}
 									</template>
-								</el-table-column> -->
+								</el-table-column>
 							</el-table>
 						</el-card>
                     </el-col>
@@ -133,11 +133,6 @@
 					<ve-histogram :data="chartData" height="400px" style="margin-top:100px;"></ve-histogram>
                 </el-card>
             </el-col>
-			<!-- <el-col :span="8">
-                <el-card shadow="hover"  style="min-height:400px;">
-					<ve-pie :data="pieData" height="400px" :settings="chartSettings" style="margin-top:100px;"></ve-pie>
-                </el-card>
-            </el-col> -->
         </el-row>
     </div>
 </template>
@@ -154,6 +149,15 @@ export default {
 			offsetY: 180
 		}
         return {
+            listLoading:false,
+            statistics:{
+                views:0,
+                volumeOrder:0,
+                success:0,
+                money:0,
+                abnormal:0,
+                message:0,
+            },
             screenWidth: document.body.clientWidth,
 			orderList:[],
 			loginlist:[],
@@ -191,7 +195,6 @@ export default {
                 let that = this
                 setTimeout(function(){
                     // 打印screenWidth变化的值
-                    console.log(that.screenWidth)
                     that.timer = false
                 },400)
             }
@@ -210,9 +213,12 @@ export default {
 	},
     methods: {
 		fetchData() {
+            this.listLoading = true
 			getAbnormalList().then(response => {
 				this.orderList = response.data.orderList;
-				this.loginlist = response.data.loginlist;
+                this.loginlist = response.data.loginlist;
+                this.statistics = response.data.statistics
+                this.listLoading = false
 			});
 		},
 		formatLocalTime(val){

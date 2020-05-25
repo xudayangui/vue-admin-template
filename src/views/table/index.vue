@@ -24,10 +24,10 @@
             	</el-button>
             </el-form-item>
         </el-form>
-		<el-table v-loading="listLoading" :data="tableData" element-loading-text="Loading" border fit highlight-current-row>
+		<el-table v-loading="listLoading" :data="tableData" element-loading-text="加载中..." border fit highlight-current-row>
 			<el-table-column align="center" label="ID" width="95">
 				<template slot-scope="scope">
-					{{ scope.$index }}
+					{{ scope.row.id }}
 				</template>
 			</el-table-column>
 			<el-table-column label="用户名">
@@ -56,7 +56,7 @@
 					<span>{{ scope.row.time }}</span>
 				</template>
 			</el-table-column>
-			<el-table-column label="操作">
+			<el-table-column label="操作" class="btn">
 				<template slot-scope="scope">
 					<el-button type="text" size="mini" @click="showDialog_cb(scope.row)">编辑</el-button>
 					<el-button type="text" size="mini" v-if="scope.row.status" @click="deleteRow(scope.$index, tableData)">删除</el-button>
@@ -137,7 +137,7 @@ export default {
 };
 </script>
 <style scoped>
-.el-button {
+.btn .el-button {
     padding-bottom: 0
 }
 </style>

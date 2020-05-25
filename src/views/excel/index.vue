@@ -28,7 +28,7 @@
                 </el-button>
             </el-form-item>
         </el-form>
-		<el-table ref="multipleTable" @selection-change="handleSelectionChange" v-loading="listLoading" :data="tableData" element-loading-text="Loading" border fit highlight-current-row>
+		<el-table ref="multipleTable" @selection-change="handleSelectionChange" v-loading="listLoading" :data="tableData" element-loading-text="加载中..." border fit highlight-current-row>
 			<el-table-column type="selection" align="center" />
             <el-table-column align="center" label="编号" width="95">
 				<template slot-scope="scope">
