@@ -105,3 +105,14 @@ export function param2Obj(url) {
         '"}'
     )
 }
+export function isPlainObject(value) {
+    if (!value || typeof value !== 'object' || ({}).toString.call(value) != '[object Object]' ) {
+        return false;
+    }
+    let proto = Object.getPrototypeOf(value);
+    if (proto === null) {
+        return true;
+    }
+    let Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+    return typeof Ctor == 'function' && Ctor instanceof Ctor && Function.prototype.toString.call(Ctor) === Function.prototype.toString.call(Object);
+}
