@@ -31,7 +31,7 @@
 
 <script>
 import Pagination from '@/components/Pagination'
-import dialogExample from '@/components/Dialog'
+import dialogExample from './index.dlg.vue'
 import { permissionList } from "@/api/setting";
 
 export default {
