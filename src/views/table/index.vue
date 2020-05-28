@@ -64,7 +64,7 @@
 			</el-table-column>
 		</el-table>
 		<!-- 编辑 -->
-		<el-dialog title="编辑" :visible.sync="dialogVisible">
+		<el-dialog title="编辑" :visible.sync="dialogVisible" width="30%">
 			<div class="dialog-content">
 				<el-form label-width="120px" ref="dlgform" :model="copyModel">
 					<el-form-item  prop="name" label="用户名：">
@@ -139,7 +139,7 @@ export default {
 			this.fetchData();
 		},
 		showDialog_cb(row){
-			this.model = Object.assign({},row)
+			this.copyModel = Object.assign({},row)
 			this.dialogVisible = true
 		},
 		fetchData() {
@@ -177,5 +177,8 @@ export default {
 }
 .el-button--mini, .el-button--mini.is-round {
     padding: 5px 10px;
+}
+.wh200 {
+	width: 200px;
 }
 </style>

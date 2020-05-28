@@ -25,7 +25,7 @@
 			</el-table-column>
 		</el-table>
 		<!-- 编辑 -->
-		<el-dialog title="编辑" :visible.sync="dialogVisible">
+		<el-dialog title="编辑" :visible.sync="dialogVisible" width="30%">
 			<div class="dialog-content">
 				<el-form label-width="120px" ref="dlgform" :model="copyModel">
 					<el-form-item  prop="name" label="用户名：">
@@ -102,3 +102,9 @@ export default {
 	}
 };
 </script>
+<style scoped>
+.wh200 {
+	width: 200px;
+}
+</style>
+

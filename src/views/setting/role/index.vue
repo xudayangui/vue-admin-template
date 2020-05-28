@@ -20,14 +20,14 @@
 			</el-table-column>
 		</el-table>
 		<!-- 编辑 -->
-		<el-dialog title="编辑" :visible.sync="dialogVisible">
+		<el-dialog title="编辑" :visible.sync="dialogVisible" width="30%">
 			<div class="dialog-content">
 				<el-form label-width="120px" ref="dlgform" :model="copyModel">
 					<el-form-item  prop="name" label="角色名称：">
 						<span>{{permission[copyModel.status]}}</span>
 					</el-form-item>
 					<el-form-item prop="status" label="权限列表：">
-						<el-tree :data="treeData" show-checkbox :props="defaultProps" :default-expand-all="true" node-key="id" :default-checked-keys="[1,2,3]"></el-tree>
+						<el-tree :data="treeData" show-checkbox :props="defaultProps" :default-expand-all="true" node-key="id" :default-checked-keys="[1,2,3]" class="tree"></el-tree>
 					</el-form-item>
 				</el-form>
 			</div>
@@ -116,3 +116,10 @@ export default {
 	}
 };
 </script>
+<style scoped>
+.tree {
+	height: 200px;
+	overflow-y: scroll;
+	box-sizing: border-box;
+}
+</style>
