@@ -63,30 +63,59 @@
 				</template>
 			</el-table-column>
 		</el-table>
+		<!-- 编辑 -->
+		<el-dialog title="编辑" :visible.sync="dialogVisible">
+			<div class="dialog-content">
+				<el-form label-width="120px" ref="dlgform" :model="copyModel">
+					<el-form-item  prop="name" label="用户名：">
+						<el-input size="small" v-model="copyModel.name" class="wh200"></el-input>
+					</el-form-item>
+					<el-form-item prop="age" label="年龄：">
+						<el-input size="small" v-model="copyModel.age" class="wh200"></el-input>
+					</el-form-item>
+					<el-form-item prop="city" label="住址：" >
+						<el-input  size="small" v-model="copyModel.city" class="wh200"></el-input>
+					</el-form-item>
+					<el-form-item prop="status" label="状态：">
+						<el-select size="small" class="wh200" v-model="copyModel.status" >
+							<el-option label="已录入" :value="1"/>
+							<el-option label="未录入" :value="0"/>
+						</el-select>
+					</el-form-item>
+				</el-form>
+			</div>
+			<span slot="footer" class="dialog-footer">
+				<el-button size="small" @click="dialogVisible=false">取 消</el-button>
+				<el-button size="small" type="primary">确 定</el-button>
+			</span>
+		</el-dialog>
 		<pagination  :total="total"  :page.sync="listQuery.page" :limit.sync="listQuery.pageSize" @pagination="fetchData" />
-		<dialogExample :dialog-visible="showDialog" @dialog-cancel="showDialog=false" :copyModel="copyModel"></dialogExample>
 	</div>
 </template>
 
 <script>
 import Pagination from '@/components/Pagination'
-import dialogExample from './index.dlg.vue'
 import { getList } from "@/api/table";
 
 export default {
 	components: {
 		Pagination,
-		dialogExample
 	},
 	data() {
 		return {
+			dialogVisible:false,
 			form:{
                 status:null,
                 userName:"",
 				age:"",
-            },
-			copyModel:{},
-			showDialog:false,
+			},
+			copyModel:{
+				userName:"",
+                age:"",
+                adress:"",
+                status:"",
+                time:"",
+			},
 			total: 0, // 审计列表总数
 			listQuery: { // 获取审计列表传参集合
 				page: 1,
@@ -110,8 +139,8 @@ export default {
 			this.fetchData();
 		},
 		showDialog_cb(row){
-			this.copyModel = row
-			this.showDialog = true
+			this.model = Object.assign({},row)
+			this.dialogVisible = true
 		},
 		fetchData() {
 			this.listLoading = true;

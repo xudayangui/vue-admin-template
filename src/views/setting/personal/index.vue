@@ -27,6 +27,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+	name: 'personal',
     computed: {
 		...mapGetters([
 			'name'

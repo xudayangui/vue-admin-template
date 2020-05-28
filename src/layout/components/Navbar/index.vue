@@ -8,16 +8,14 @@
 					<i class="el-icon-full-screen"></i>
 				</el-tooltip>
 			</span>
-			<el-badge is-dot @click.native="toggleMsgShow">
-				<el-tooltip effect="dark" content="消息" placement="bottom">
-					<i class="el-icon-message-solid"></i>
-				</el-tooltip>
-            </el-badge>
 			<el-dropdown trigger="click">
 				<span class="el-dropdown-link">
 					{{name}}
 				</span>
 				<el-dropdown-menu slot="dropdown">
+					<el-dropdown-item @click.native="toPerson">
+						个人信息
+					</el-dropdown-item>
 					<el-dropdown-item>
 						<a href="https://github.com/xudayangui/vue-admin-template" target="view_window">项目仓库</a>
 					</el-dropdown-item>
@@ -46,12 +44,15 @@ export default {
 		Hamburger
 	},
 	computed: {
-		
+
 		...mapGetters([
 			'sidebar','name'
 		])
 	},
 	methods: {
+		toPerson() {
+			this.$router.push({ name: "personal" });
+		},
 		toggleMsgShow(){},
 		//伸缩
 		toggleSideBar() {
@@ -176,7 +177,7 @@ export default {
 	}
 	.el-badge {
 		cursor: pointer;
-		
+
 	}
 }
 </style>

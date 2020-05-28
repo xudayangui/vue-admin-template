@@ -6,6 +6,7 @@ Vue.use(Router)
 /* 引入Layout 布局 */
 import Layout from '@/layout'
 
+
 /**
  * 当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式--如组件页面
  * 只有一个时，会将那个子路由当做根路由显示在侧边栏--如引导页面
@@ -191,19 +192,26 @@ export const constantRoutes = [
 	{
 		path: '/setting',
 		component: Layout,
-		redirect: '/setting/personal',
+		redirect: '/setting/role',
 		name: 'Setting',
 		meta: {title: '设置',icon: 'el-icon-setting'},
 		children: [
 			{
-				path: 'personal',
-				component: () => import('@/views/setting/personal/index'), 
-				meta: { title: '个人设置' },
+				path: 'role',
+				component: () => import('@/views/setting/role/index'),
+				meta: { title: '角色设置' },
 			},
 			{
 				path: 'permission',
 				component: () => import('@/views/setting/permission/index'),
-				meta: { title: '权限设置' }
+				meta: { title: '用户设置' }
+			},
+			{
+				path: 'personal',
+				name:'personal',
+				component: () => import('@/views/setting/personal/index'),
+				meta: { title: '个人信息' },
+				hidden:true
 			}
 		]
 	},

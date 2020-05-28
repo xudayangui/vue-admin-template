@@ -1,14 +1,9 @@
 <template>
 	<div class="app-container">
 		<el-table v-loading="listLoading" :data="tableData" element-loading-text="加载中..." border fit highlight-current-row>
-			<el-table-column label="用户名">
+			<el-table-column label="角色名称">
 				<template slot-scope="scope">
-					{{ scope.row.name }}
-				</template>
-			</el-table-column>
-			<el-table-column class-name="status-col" label="权限类别"  align="center">
-				<template slot-scope="scope">
-                    <span>{{ permission[scope.row.status] }}</span>
+					{{ permission[scope.row.status] }}
 				</template>
 			</el-table-column>
 			<el-table-column align="center" prop="time" label="创建时间">
@@ -28,16 +23,11 @@
 		<el-dialog title="编辑" :visible.sync="dialogVisible">
 			<div class="dialog-content">
 				<el-form label-width="120px" ref="dlgform" :model="copyModel">
-					<el-form-item  prop="name" label="用户名：">
-						<el-input size="small" v-model="copyModel.name" class="wh200"></el-input>
+					<el-form-item  prop="name" label="角色名称：">
+						<span>{{permission[copyModel.status]}}</span>
 					</el-form-item>
-					<el-form-item prop="status" label="权限类别：">
-						<el-select size="small" class="wh200" v-model="copyModel.status" >
-							<el-option label="超级管理员" :value="0"/>
-							<el-option label="管理员" :value="1"/>
-							<el-option label="开发人员" :value="2"/>
-							<el-option label="客服人员" :value="3"/>
-						</el-select>
+					<el-form-item prop="status" label="权限列表：">
+						<el-tree :data="treeData" show-checkbox :props="defaultProps" :default-expand-all="true" node-key="id" :default-checked-keys="[1,2,3]"></el-tree>
 					</el-form-item>
 				</el-form>
 			</div>
@@ -50,13 +40,11 @@
 </template>
 
 <script>
-import { permissionList } from "@/api/setting";
-
+import { roleList,treeRoleList } from "@/api/role";
 export default {
 	data() {
 		return {
 			copyModel:{
-				userName:"",
                 status:"",
 			},
 			dialogVisible:false,
@@ -67,24 +55,50 @@ export default {
 			},
 			tableData: [],
             listLoading: true,
-            permission: ['超级管理员','管理员','开发人员','客服人员']
-		};
+			permission: ['超级管理员','管理员','开发人员','客服人员'],
+			defaultProps: {
+				children: 'children',
+				label: 'label'
+			},
+			treeData:[],
+			defaultCheckeKeys:[]
+
+		}
 	},
 	created() {
 		this.fetchData();
 	},
 	methods: {
+		treeRoleListhttp(){
+			treeRoleList().then(response => {
+				this.treeData = response.data.list;
+				// this.parseTreeJson(this.treeData)
+			});
+		},
+		//递归实现
+		parseTreeJson (treeNodes) {
+			if (!treeNodes || !treeNodes.length) return;
+
+			for (let i = 0, len = treeNodes.length; i < len; i++) {
+				this.defaultCheckeKeys.push(treeNodes[i].id)
+				let childs = treeNodes[i].children;
+				if (childs && childs.length > 0) {
+					this.parseTreeJson(childs);
+				}
+			}
+		},
 		showDialog_cb(row){
+			this.defaultCheckeKeys = []
 			this.copyModel = Object.assign({},row)
+			this.treeRoleListhttp()
 			this.dialogVisible = true
 		},
 		fetchData() {
 			this.listLoading = true;
-			permissionList().then(response => {
+			roleList().then(response => {
 				this.listLoading = false;
 				this.tableData = response.data.list;
 				this.total = this.tableData.length
-
 			});
 		},
 		deleteRow(index, rows){
