@@ -78,7 +78,7 @@ export default {
 		//递归实现
 		parseTreeJson (treeNodes) {
 			if (!treeNodes || !treeNodes.length) return;
-
+			// for
 			for (let i = 0, len = treeNodes.length; i < len; i++) {
 				this.defaultCheckeKeys.push(treeNodes[i].id)
 				let childs = treeNodes[i].children;
@@ -86,6 +86,13 @@ export default {
 					this.parseTreeJson(childs);
 				}
 			}
+			// forEach
+			// treeNodes.forEach(function(item){
+			// 	this.defaultCheckeKeys.push(item.id)
+			// 	if (item.children && item.children.length > 0) {
+			// 		this.parseTreeJson(item.children);
+			// 	}
+			// });
 		},
 		showDialog_cb(row){
 			this.defaultCheckeKeys = []
