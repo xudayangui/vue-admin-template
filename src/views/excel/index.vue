@@ -1,6 +1,6 @@
 <template>
 	<div class="app-container">
-        <el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
+        <el-form ref="form" :inline="true" class="small-form-margin" :model="form">
              <el-form-item label="">
                 <el-input size="small" v-model="form.filename" placeholder="名称" style="width:200px;" prefix-icon="el-icon-document" />
             </el-form-item>
@@ -162,11 +162,3 @@ export default {
 	}
 };
 </script>
-<style scoped>
-.el-form {
-	margin-bottom: 10px;
-}
-.el-form-item {
-	margin-bottom: 0;
-}
-</style>

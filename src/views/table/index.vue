@@ -1,6 +1,6 @@
 <template>
 	<div class="app-container">
-		<el-form ref="form" :inline="true" class="demo-form-inline" :model="form">
+		<el-form ref="form" :inline="true" class="small-form-margin" :model="form">
              <el-form-item label="" prop="userName">
                 <el-input size="small" v-model="form.userName" placeholder="用户名" style="width:100px;" />
             </el-form-item>
@@ -56,7 +56,7 @@
 					<span>{{ scope.row.time }}</span>
 				</template>
 			</el-table-column>
-			<el-table-column label="操作" class="btn">
+			<el-table-column label="操作" class-name="small-padding fixed-width">
 				<template slot-scope="scope">
 					<el-button type="primary" size="mini" @click="showDialog_cb(scope.row)">编辑</el-button>
 					<el-button type="danger" size="mini" v-if="scope.row.status" @click="deleteRow(scope.$index, tableData)">删除</el-button>
@@ -165,20 +165,3 @@ export default {
 	}
 };
 </script>
-<style scoped>
-.btn .el-button {
-    padding-bottom: 0
-}
-.el-form {
-	margin-bottom: 10px;
-}
-.el-form-item {
-	margin-bottom: 0;
-}
-.el-button--mini, .el-button--mini.is-round {
-    padding: 5px 10px;
-}
-.wh200 {
-	width: 200px;
-}
-</style>

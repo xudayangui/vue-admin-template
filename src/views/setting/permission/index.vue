@@ -17,7 +17,7 @@
 					<span>{{ scope.row.time }}</span>
 				</template>
 			</el-table-column>
-			<el-table-column label="操作">
+			<el-table-column label="操作" class-name="small-padding fixed-width">
 				<template slot-scope="scope">
 					<el-button type="primary" size="mini" @click="showDialog_cb(scope.row)">编辑</el-button>
 					<el-button type="danger" size="mini" v-if="scope.row.status!==0" @click="deleteRow(scope.$index, tableData)">删除</el-button>
@@ -102,9 +102,4 @@ export default {
 	}
 };
 </script>
-<style scoped>
-.wh200 {
-	width: 200px;
-}
-</style>
 
