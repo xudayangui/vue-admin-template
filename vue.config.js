@@ -44,9 +44,6 @@ module.exports = {
 	},
 	configureWebpack: {
 		name: name,
-		performance: {
-			hints:false // 取消打包文件过大的警告
-		},
 		resolve: {
 			// 添加别名 alias
 			alias: {
@@ -56,67 +53,75 @@ module.exports = {
 	},
 	// webpack配置
 	chainWebpack(config) {
-		config.module
-			.rule('vue')
-			.use('vue-loader')
-			.loader('vue-loader')
-			.tap(options => {
-				options.compilerOptions.preserveWhitespace = true //保留元素之间空格
-				return options
-			})
-			.end()
-
-		config
-			.when(process.env.NODE_ENV === 'development',
-				config => config.devtool('cheap-source-map')
-			)
-
-		config
-			.when(process.env.NODE_ENV !== 'development',
-				config => {
-					config
-						.plugin('ScriptExtHtmlWebpackPlugin')
-						.after('html')
-						.use('script-ext-html-webpack-plugin', [{
-							// `runtime`必须与runtimeChunk名称相同。默认是“runtime”
-							inline: /runtime\..*\.js$/
-						}])
-						.end()
-					config
-					// 修改 preload 的配置 忽略为 runtime 添加 preload
-						.plugin('preload')
-						.tap(options => {
-							options[0].fileBlacklist = options[0].fileBlacklist || []
-							options[0].fileBlacklist.push(/runtime\..*\.js$/)
-							return options
-						})
-						.end()
-					config
-						.optimization.splitChunks({
-							chunks: 'all',
-							cacheGroups: {
-								libs: {
-									name: 'chunk-libs',
-									test: /[\\/]node_modules[\\/]/,
-									priority: 10,
-									chunks: 'initial' // 仅打包最初依赖的第三方
-								},
-								elementUI: {
-									name: 'chunk-elementUI', // 将elementUI拆分为一个包
-									priority: 20, // 大小需要大于libs和app，否则将打包到libs或app中
-									test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // 为了适应cnpm
-								},
-								commons: {
-									name: 'chunk-commons',
-									test: resolve('src/components'), // 可以自定义您的规则
-									minChunks: 3, //  最小共同数
-									priority: 5,
-									reuseExistingChunk: true
-								}
-							}
-						})
-					config.optimization.runtimeChunk('single')
-				}
-			)
-	}
+        // 可以提高第一个屏幕的速度，建议打开预加载
+        config.plugin('preload').tap(() => [
+            {
+                rel: 'preload',
+                // 忽略runtime.js
+                // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
+                fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
+                include: 'initial'
+            }
+        ])
+    
+        // 当页面很多时，将导致太多毫无意义的请求
+        config.plugins.delete('prefetch')
+    
+        // set svg-sprite-loader
+        config.module
+            .rule('svg')
+            .exclude.add(resolve('src/icons'))
+            .end()
+        config.module
+            .rule('icons')
+            .test(/\.svg$/)
+            .include.add(resolve('src/icons'))
+            .end()
+            .use('svg-sprite-loader')
+            .loader('svg-sprite-loader')
+            .options({
+                symbolId: 'icon-[name]'
+            })
+            .end()
+    
+        config
+            .when(process.env.NODE_ENV !== 'development',
+                config => {
+                    config
+                        .plugin('ScriptExtHtmlWebpackPlugin')
+                        .after('html')
+                        .use('script-ext-html-webpack-plugin', [{
+                        // `runtime`必须和runtimeChunk名称相同。默认是“运行时”
+                        inline: /runtime\..*\.js$/
+                        }])
+                        .end()
+                    config
+                        .optimization.splitChunks({
+                        chunks: 'all',
+                        cacheGroups: {
+                            libs: {
+                                name: 'chunk-libs',
+                                test: /[\\/]node_modules[\\/]/,
+                                priority: 10,
+                                chunks: 'initial' //仅打包最初依赖的第三方
+                            },
+                            elementUI: {
+                                name: 'chunk-elementUI', //将elementUI拆分为一个包
+                                priority: 20, //重量必须大于libs和app，否则将打包到libs或app中
+                                test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // 为了适应cnpm
+                            },
+                            commons: {
+                                name: 'chunk-commons',
+                                test: resolve('src/components'), // 可以自定义的规则
+                                minChunks: 3, //  最小共同数
+                                priority: 5,
+                                reuseExistingChunk: true
+                            }
+                        }
+                    })
+                // https:// webpack.js.org/configuration/optimization/#optimizationruntimechunk
+                config.optimization.runtimeChunk('single')
+                }
+          )
+    }
 }
