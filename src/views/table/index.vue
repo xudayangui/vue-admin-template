@@ -1,10 +1,10 @@
 <template>
 	<div class="app-container">
 		<el-form ref="form" :inline="true" class="small-form-margin" :model="form">
-             <el-form-item label="" prop="userName">
+            <el-form-item label="" prop="userName">
                 <el-input size="small" v-model="form.userName" placeholder="用户名" style="width:100px;" />
             </el-form-item>
-			 <el-form-item label="" prop="age">
+			<el-form-item label="" prop="age">
                 <el-input size="small" v-model="form.age" placeholder="年龄" style="width:100px;"/>
             </el-form-item>
             <el-form-item label=""  prop="status">
@@ -16,12 +16,12 @@
 			<el-form-item label="">
 				<el-button size="small"  type="primary" icon="el-icon-search" @click="handleSearch">
                 搜索
-            	</el-button>
+				</el-button>
             </el-form-item>
-			 <el-form-item label="">
+			<el-form-item label="">
 				<el-button  size="small"  icon="el-icon-document" @click="handleReset('form')">
                 重置
-            	</el-button>
+				</el-button>
             </el-form-item>
         </el-form>
 		<el-table v-loading="listLoading" :data="tableData" element-loading-text="加载中..." border fit highlight-current-row>
@@ -156,8 +156,8 @@ export default {
 				cancelButtonText: '取消',
 				type: 'warning'
 			}).then(() => {
-				 rows.splice(index, 1);
-				 this.$message.success('删除成功')
+				rows.splice(index, 1);
+				this.$message.success('删除成功')
 			}).catch(() => {
 				this.$message.info('取消')
 			});

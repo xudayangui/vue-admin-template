@@ -32,7 +32,7 @@ module.exports = {
 		// 配置 proxy 代理解决跨域问题
 		proxy: {
 			"/api": {
-				target:"https://www.fastmock.site/mock/dc7443a19584b44d30f08d682225761c/api", // 目标代理接口地址
+				target:"https://www.easy-mock.com/mock/5fbff3a5bbfbda51199fe047/api", // 目标代理接口地址
 				secure: false,
 				changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
 				// ws: true, // 是否启用websockets
@@ -63,10 +63,10 @@ module.exports = {
                 include: 'initial'
             }
         ])
-    
+
         // 当页面很多时，将导致太多毫无意义的请求
         config.plugins.delete('prefetch')
-    
+
         // set svg-sprite-loader
         config.module
             .rule('svg')
@@ -83,7 +83,7 @@ module.exports = {
                 symbolId: 'icon-[name]'
             })
             .end()
-    
+
         config
             .when(process.env.NODE_ENV !== 'development',
                 config => {
