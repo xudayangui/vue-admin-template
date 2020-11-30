@@ -1,17 +1,16 @@
 <template>
 	<div class="app-container">
         <div>
-            <!-- <mavon-editor v-model="content" ref="md" @imgAdd="$imgAdd" @change="change" style="min-height: 600px"/> -->
+            <MarkdownPro/>
             <el-button class="editor-btn" size="small" type="primary" @click="submit">提交</el-button>
         </div>
 	</div>
 </template>
 
 <script>
-    // import { mavonEditor } from 'mavon-editor'
-    // import 'mavon-editor/dist/css/index.css'
+    import { MarkdownPro } from 'vue-meditor'
     export default {
-        // name: 'markdown',
+        name: 'markdown',
         data: function(){
             return {
                 content:'',
@@ -21,7 +20,7 @@
             }
         },
         components: {
-            mavonEditor
+            MarkdownPro
         },
         methods: {
             // 将图片上传到服务器，返回地址替换到md中

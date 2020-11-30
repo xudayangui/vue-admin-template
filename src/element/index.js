@@ -1,7 +1,7 @@
 // 导入自己需要的组件
 import {Avatar,Carousel,CarouselItem,Loading,Message,MessageBox,Container,Header,Main,Footer,Row,Col,Input,Button,Form,
     FormItem,Image,Tabs,TabPane,Radio, RadioGroup,RadioButton,Dialog,Select,Option,Table,TableColumn,DatePicker,
-    Scrollbar,Menu,Submenu,MenuItem,Breadcrumb, BreadcrumbItem, Tooltip, Dropdown, DropdownItem, DropdownMenu, Pagination, Card, Alert, Tag, Tree, Checkbox, CheckboxGroup} from 'element-ui'
+    Scrollbar,Menu,Submenu,MenuItem,Breadcrumb, BreadcrumbItem, Tooltip, Dropdown, DropdownItem, DropdownMenu, Pagination, Card, Alert, Tag, Tree, Checkbox, CheckboxGroup,Upload} from 'element-ui'
 const element = {
   install: function (Vue) {
     Vue.use(Avatar)
@@ -40,6 +40,7 @@ const element = {
     Vue.use(Tag);
     Vue.use(Tree);
     Vue.use(Checkbox).use(CheckboxGroup);
+    Vue.use(Upload)
     Vue.prototype.$confirm = MessageBox.confirm;
     Vue.prototype.$notify = Notification;
     Vue.prototype.$message = Message;
