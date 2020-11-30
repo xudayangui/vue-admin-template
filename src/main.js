@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // 重置 css 样式
 
-import ElementUI from 'element-ui';//按需引进element ui
+import element from './element/index' //按需引进element ui
 import 'element-ui/lib/theme-chalk/index.css' //引进element ui css
 
 import VCharts from 'v-charts' //引进v-charts
@@ -16,7 +16,7 @@ import './icons' // icon
 import '@/permission' // permission control
 import * as filters from './filters' // global filters
 
-Vue.use(ElementUI)
+Vue.use(element)
 // 注册全局实用程序过滤器
 Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])

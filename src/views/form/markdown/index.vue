@@ -1,17 +1,17 @@
 <template>
 	<div class="app-container">
         <div>
-            <mavon-editor v-model="content" ref="md" @imgAdd="$imgAdd" @change="change" style="min-height: 600px"/>
+            <!-- <mavon-editor v-model="content" ref="md" @imgAdd="$imgAdd" @change="change" style="min-height: 600px"/> -->
             <el-button class="editor-btn" size="small" type="primary" @click="submit">提交</el-button>
         </div>
 	</div>
 </template>
 
 <script>
-    import { mavonEditor } from 'mavon-editor'
-    import 'mavon-editor/dist/css/index.css'
+    // import { mavonEditor } from 'mavon-editor'
+    // import 'mavon-editor/dist/css/index.css'
     export default {
-        name: 'markdown',
+        // name: 'markdown',
         data: function(){
             return {
                 content:'',
